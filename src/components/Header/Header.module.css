@@ -1,0 +1,27 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #DDDD;
+    width: 100%;
+    height: 6rem;
+}
+
+.main_header{
+    display: flex;
+    padding-left: var(--header-logo-left-padding);
+    align-items: center;
+    width: 50%;
+}
+
+.info_header{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 1rem;
+    background-color: var(--cor-primaria);
+    min-width: 50%;
+    width: fit-content;
+    clip-path: polygon(6rem 0, 100% 0, 100% 100%, 0 100%);
+    gap: 5%
+    
+}
