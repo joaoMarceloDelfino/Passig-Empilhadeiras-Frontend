@@ -5,12 +5,12 @@ function InfoCard({ icon, title, text }){
     function getTextFormatted(){
         if(Array.isArray(text)){
             return text.map((item, i) => {
-                return <p key={i}>{item}</p>   
+                return <p key={i} className={styles.text}>{item}</p>   
             });
         }
 
         return (
-            <p>{text}</p>
+            <p className={styles.text}>{text}</p>
         )
     }
 
@@ -20,7 +20,7 @@ function InfoCard({ icon, title, text }){
                 {icon}
             </div>
             <div className={styles.info_wrapper}>
-                <h1>{title}</h1>
+                <h1 className={styles.title}>{title}</h1>
                 {getTextFormatted()}
             </div>
         </div>

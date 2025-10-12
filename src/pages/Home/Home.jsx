@@ -1,11 +1,11 @@
-import Header from "../../components/Header/Header";
+import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Home.module.css"
 
-function Home(){
+function Home({setShowLoginModal}){
 
     return(
         <div className={styles.container}>
-            <Header/>
+            <Navbar setShowLoginModal={setShowLoginModal}/>
             
         </div>
     );
