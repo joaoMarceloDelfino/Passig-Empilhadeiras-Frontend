@@ -22,6 +22,19 @@ function LoginModal({showModal, onModalClose}){
                                 <hr className={styles.linhaDivisoria}/>
                                 <p className={styles.ouPlaceholder}>Ou</p>
                             </span>
+                            <form className={styles.loginForm}>
+                                <div className={styles.inputWrapper}>
+                                    <label className={styles.label}>Email</label>
+                                    <input type="text" className={styles.input}/>
+                                </div>
+                                <div className={styles.inputWrapper}>
+                                    <label className={styles.label}>Senha</label>
+                                    <input type="password" className={styles.input}/>
+                                </div>
+                                <button className={styles.button} onClick={(e) => {e.preventDefault()}}>
+                                    Logar
+                                </button>
+                            </form>
                         </div>
                     </main>
                 </div>
