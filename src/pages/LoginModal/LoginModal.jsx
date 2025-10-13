@@ -3,7 +3,14 @@ import styles from "./Login_Modal.module.css"
 import FacebookLogo from "../../assets/Facebook_logo.png"
 import GoogleLogo from "../../assets/Google_logo.png"
 
-function LoginModal({showModal, onModalClose}){
+
+function LoginModal({showModal, onModalClose, setShowRegisterModal}){
+
+    function onOpenRegisterModal(){
+        onModalClose();
+        setShowRegisterModal(true);
+    }
+
     return(
         <>
             {
@@ -24,16 +31,23 @@ function LoginModal({showModal, onModalClose}){
                             </span>
                             <form className={styles.loginForm}>
                                 <div className={styles.inputWrapper}>
-                                    <label className={styles.label}>Email</label>
-                                    <input type="text" className={styles.input}/>
+                                    <label className={styles.emailLabel}>Email</label>
+                                    <input type="email" className={styles.input}/>
                                 </div>
                                 <div className={styles.inputWrapper}>
-                                    <label className={styles.label}>Senha</label>
+                                    <span className={styles.senhaRow}>
+                                        <label>Senha</label>
+                                        <a>Esqueci minha senha</a>
+                                    </span>
                                     <input type="password" className={styles.input}/>
                                 </div>
                                 <button className={styles.button} onClick={(e) => {e.preventDefault()}}>
                                     Logar
                                 </button>
+                                <div className={styles.registrarWrapper}>
+                                    <p>Ainda não possui uma conta?</p>
+                                    <a onClick={onOpenRegisterModal}>Registre-se</a>
+                                </div>
                             </form>
                         </div>
                     </main>

@@ -32,40 +32,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 6rem;
+    margin-top: 1.5rem;
     width: 55%;
     height: 100%;
     gap: 3rem;
 }
 
-.oAuthItensWrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    width: 100%;
-}
-
-.linhaDivisoriaWrapper{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.linhaDivisoria{
-    width: 100%;
-}
-
-.ouPlaceholder{
-    position: fixed;
-    background-color: #FFF;
-    font-weight: 500;
-}
-
-.loginForm{
+.registerForm{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,15 +54,15 @@
     width: 80%;
 }
 
-.emailLabel{
-    font-weight: 500;
-    padding-left: 0.5rem;
-}
-
 .input{
     height: 3rem;
     padding-left: 1rem;
     font-size: large;
+}
+
+.label{
+    font-weight: 500;
+    padding-left: 0.5rem;
 }
 
 .button{
@@ -99,21 +72,10 @@
     border: 1px #000 solid;
 }
 
-.senhaRow{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 0.5rem;
-    font-weight: 500;
-
-}
-
-.registrarWrapper{
+.registerWrapper{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    padding: 0;
     align-items: center;
     width: 100%;    
 }
-
- 

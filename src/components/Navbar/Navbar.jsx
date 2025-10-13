@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css"
 import { useState } from "react";
 
-function Navbar({setShowLoginModal}){
+function Navbar({setShowLoginModal, setShowRegisterModal}){
 
     return(
         <navbar className={styles.navbar}>
@@ -13,7 +13,7 @@ function Navbar({setShowLoginModal}){
             </div> 
 
             <div className={styles.buttons}>
-                <button className={styles.button}>Registrar-se</button>
+                <button className={styles.button} onClick={() => setShowRegisterModal(true)}>Registrar-se</button>
                 <button className={styles.button} onClick={() => setShowLoginModal(true)}>Entrar</button>
             </div>
         </navbar>

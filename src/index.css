@@ -29,7 +29,8 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #065fd4;
+  cursor: pointer;
   text-decoration: inherit;
 }
 a:hover {
