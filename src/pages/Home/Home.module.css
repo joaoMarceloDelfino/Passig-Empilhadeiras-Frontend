@@ -1,3 +1,33 @@
 .container{
      
 }
+
+.topContent{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--cinza-claro);
+    height: 22rem;
+}
+
+.titleContainer{
+    display: flex;
+    width: 27rem;
+    flex-direction: column;
+    margin-top: 5rem;
+    align-items: center;
+    margin-left: 10rem;
+    gap: 1rem;
+}
+
+.imageContainer{
+
+}
+
+.title{
+    font-size: 35px;
+    font-weight: 900;
+}
+
+.subtitle{
+    font-size: 22px;
+}
