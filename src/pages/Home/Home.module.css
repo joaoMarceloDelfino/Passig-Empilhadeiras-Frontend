@@ -28,6 +28,85 @@
     font-weight: 900;
 }
 
+.servicesTitle{
+    font-size: 30px;
+    font-weight: 600;
+}
+
 .subtitle{
     font-size: 22px;
+}
+
+.middleContent{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    /* height: 22rem; */
+    padding-top: 3rem;
+    padding-left: 12rem;
+    padding-bottom: 3rem;
+}
+
+.serviceCards{
+    display: flex;
+    flex-direction: row;
+    gap: 7rem;
+    padding-left: 3rem;
+}
+
+.bottomContent{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--cinza-claro);
+    padding: 2rem 0;
+    /* padding-left: 12rem; */
+    gap: 10rem;
+}
+
+.leftDiv{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5rem;
+    width: fit-content;
+    align-items: center;
+    gap: 3rem;
+}
+
+.empilhadeiraImage{
+    width: 579px;
+    height: 579px;
+    background-color: antiquewhite;
+}
+
+.rigthDiv{
+    display: flex;
+    flex-direction: column;
+    padding-top: 6rem;
+}
+
+.motivosAlugarContainer{
+    display: flex;
+    flex-direction: column;
+    gap:3rem;
+    margin-top: 3rem;
+
+}
+
+.motivosAlugar{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    padding-left: 2rem;
+}
+
+.buttonSpan{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+.button{
+    background-color: var(--cor-primaria);
+    border: 2px solid #000;
+    width: fit-content;
 }

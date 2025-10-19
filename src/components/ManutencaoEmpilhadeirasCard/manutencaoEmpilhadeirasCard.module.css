@@ -1,0 +1,19 @@
+.container{
+        border: 1px solid #000;
+        height: 22rem;
+        width: 21rem;
+}
+
+.titleContainer{
+    display: flex;
+    justify-content: center;
+    background-color: var(--cinza-escuro);
+    align-items: center;
+    height: 20%;
+    border-bottom: 1px solid #000;
+}
+
+.descriptionContainer{
+    padding-top: 2px;
+    padding-left: 4px;
+}
