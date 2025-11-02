@@ -1,15 +1,13 @@
-import Navbar from "../../components/Navbar/Navbar"
 import styles from "./Home.module.css"
 import Empilhadeiras from "../../assets/empilhadeiras.png"
 import ManutencaoEmpilhadeirasCard from "../../components/ManutencaoEmpilhadeirasCard/ManutencaoEmpilhadeirasCard";
 import { FaCog } from "react-icons/fa";
-import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
-function Home({setShowLoginModal, setShowRegisterModal}){
+function Home(){
 
     return(
         <div className={styles.container}>
-            <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal}/>
             <div className={styles.topContent}>
                 <div className={styles.titleContainer}>
                     <h1 className={styles.title}>Serviços mecânicos e aluguel de empilhadeiras</h1>
@@ -55,11 +53,10 @@ function Home({setShowLoginModal, setShowRegisterModal}){
                         </span>
                     </div>
                     <span className={styles.buttonSpan}>
-                        <button className={styles.button}>Consultar disponibilidade</button>
+                        <Link to={"/catalogo"}><button className={styles.button}>Consultar disponibilidade</button></Link>
                     </span>
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 }

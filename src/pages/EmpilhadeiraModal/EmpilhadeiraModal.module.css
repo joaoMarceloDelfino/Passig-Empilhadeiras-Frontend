@@ -1,0 +1,55 @@
+.bluredBackground{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: var(--cinza-claro);
+    height: 100%;
+    width: 100%;
+}
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50rem;
+    height: 25rem;
+    border: 2px solid black;
+    background-color: #FFF;
+    margin-top: 25px;
+}
+
+.titleWrapper{
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+    width: 100%;
+    border-bottom: 1px solid #000;
+
+}
+
+.informationList{
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    gap: 2rem;
+}
+
+.informationWrapper{
+    display: flex;
+    align-items: center;
+    gap: 1rem
+}
+
+.informationLabel{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.informationText{
+    font-size: 1.2rem;
+}

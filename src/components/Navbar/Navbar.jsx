@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css"
-import { useState } from "react";
 
 function Navbar({setShowLoginModal, setShowRegisterModal}){
 
     return(
         <navbar className={styles.navbar}>
            <div className={styles.nav_links}>
-                <Link className={styles.nav_link}>Home</Link>
+                <Link className={styles.nav_link} to={"/"}>Home</Link>
                 <Link className={styles.nav_link}>Serviços</Link>
                 <Link className={styles.nav_link}>Agendamentos</Link>
             </div> 
