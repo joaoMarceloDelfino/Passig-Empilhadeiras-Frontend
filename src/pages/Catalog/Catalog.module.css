@@ -12,6 +12,41 @@
 }
 
 .cardsWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5rem;
+    flex-wrap: wrap;
+    margin: 0 3rem;
     margin-top: 5rem;
+}
+
+.notFoundWrapper{
+    display: flex;
+    height: 100%;
+    margin-top: 5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+    gap: 1rem;
+    position: relative;
+    transform: translate(0, 25%);
+}
+
+.descriptionWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFoundTitle{
+    font-size: 2rem;
+}
+
+.notFoundSubtitle{
+    font-size: 1.2rem
 }
 

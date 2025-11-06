@@ -35,7 +35,7 @@ function App() {
 
     <LoginModal showModal={showLoginModal} onModalClose={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal}/>
     <RegisterModal showModal={showRegisterModal} onModalClose={() => setShowRegisterModal(false)} setShowLoginModal={setShowLoginModal}/>
-    <EmpilhadeiraModal showModal={showEmpilhadeiraModal} onModalClose={() => setShowEmpilhadeiraModal(false)} selectedEmpilhadeira={setSelectedEmpilhadeira}/>
+    <EmpilhadeiraModal showModal={showEmpilhadeiraModal} onModalClose={() => setShowEmpilhadeiraModal(false)} dados={selectedEmpilhadeira}/>
     </>  
   )
 }

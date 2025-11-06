@@ -3,11 +3,7 @@ import Empilhadeiras from "./../../assets/empilhadeiras.png"
 import { GoLinkExternal } from "react-icons/go";
 
 
-function EmpilhadeiraCard({dados, setShowEmpilhadeiraModal, setSelectedEmpilhadeira}){
-
-const onShowEmpilhadeiraModal = () => {
-    setShowEmpilhadeiraModal(true);
-}
+function EmpilhadeiraCard({openModalHandler, dados}){
 
 return(
     <div className={styles.container}>
@@ -16,11 +12,11 @@ return(
         </div>
         <div className={styles.descriptionDiv}>
             <span className={styles.titleRow}>
-                <h2 className={styles.titleEmpilhadeira}>Empilhadeira Reacher</h2>
-                <h2 className={styles.yearEmpilhadeira}>2006/2007</h2>
+                <h2 className={styles.titleEmpilhadeira}>{dados.name}</h2>
+                <h2 className={styles.yearEmpilhadeira}>{dados.fabricationYear}</h2>
             </span>
             <span className={styles.readMoreRow}>
-                <button className={styles.readMoreButton} onClick={onShowEmpilhadeiraModal}>
+                <button className={styles.readMoreButton} onClick={openModalHandler}>
                     <GoLinkExternal size={25}/>
                     Ler mais
                 </button>
