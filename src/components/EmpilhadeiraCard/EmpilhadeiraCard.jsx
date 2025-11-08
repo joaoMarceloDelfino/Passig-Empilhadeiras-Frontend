@@ -1,6 +1,6 @@
 import styles from "./EmpilhadeiraCard.module.css";
-import Empilhadeiras from "./../../assets/empilhadeiras.png"
 import { GoLinkExternal } from "react-icons/go";
+import Carrousel from "../Carroussel/Carroussel";
 
 
 function EmpilhadeiraCard({openModalHandler, dados}){
@@ -8,7 +8,7 @@ function EmpilhadeiraCard({openModalHandler, dados}){
 return(
     <div className={styles.container}>
         <div className={styles.imageDiv}>
-            <img src={Empilhadeiras} alt="Empilhadeira" className={styles.image}/>
+            <Carrousel imagesList={dados.base64Images}/>
         </div>
         <div className={styles.descriptionDiv}>
             <span className={styles.titleRow}>
