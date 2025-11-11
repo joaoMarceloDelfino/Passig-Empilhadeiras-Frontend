@@ -1,5 +1,5 @@
 import styles from "./footer.module.css"
-import { FaInstagram, FaLinkedin } from "react-icons/fa"
+import { FaInstagram, FaFacebook } from "react-icons/fa"
 
 function Footer(){
     return(
@@ -8,7 +8,7 @@ function Footer(){
                 <h1>FELIP PASSIG MECÂNICA E EMPILHADEIRAS LOGO</h1> {/*Colocar a logo futuramente*/}
                 <span className={styles.socialMediaIcons}>
                     <FaInstagram size={30} className={`${styles.socialMediaIcon} ${styles.instagramIcon}`}/>
-                    <FaLinkedin size={30} className={`${styles.socialMediaIcon} ${styles.linkedinIcon}`}/>
+                    <FaFacebook size={30} className={`${styles.socialMediaIcon} ${styles.facebookIcon}`}/>
                 </span>
             </span>
             <span className={styles.bottomRow}>
