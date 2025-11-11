@@ -1,15 +1,26 @@
 import axios from "axios";
 
-function BaseApi(){
+class BaseApi{
 
-    const baseApiUrl = "http://localhost:8080/api";
+    constructor(){
+        this.baseApiUrl = "http://localhost:8080/api";
+    }
 
-    function findAllEmpilhadeiras(){
-        const api = `${baseApiUrl}/forklifts/findAll`;
+    findAllEmpilhadeiras(){
+        const api = `${this.baseApiUrl}/forklifts/findAll`;
         return axios.get(api);
     }
 
-    return {findAllEmpilhadeiras}
+    login(){
+        const api = `${this.baseApiUrl}/user/login`;
+        return axios.post(api)
+    }
+
+    register(body){
+        const api = `${this.baseApiUrl}/user/register`;
+        return axios.post(api, body)
+    }
+
 }
 
 export default new BaseApi();

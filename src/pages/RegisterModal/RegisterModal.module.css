@@ -61,6 +61,8 @@
 }
 
 .label{
+    display: flex;
+    justify-content: space-between;
     font-weight: 500;
     padding-left: 0.5rem;
 }
@@ -78,4 +80,12 @@
     padding: 0;
     align-items: center;
     width: 100%;    
+}
+
+.errorMessage{
+    color: red;
+}
+
+.errorDiv{
+    border-color: red;
 }

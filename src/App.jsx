@@ -34,7 +34,7 @@ function App() {
     </div>
 
     <LoginModal showModal={showLoginModal} onModalClose={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal}/>
-    <RegisterModal showModal={showRegisterModal} onModalClose={() => setShowRegisterModal(false)} setShowLoginModal={setShowLoginModal}/>
+    <RegisterModal showModal={showRegisterModal} onModalCloseHandler={() => setShowRegisterModal(false)} setShowLoginModal={setShowLoginModal}/>
     <EmpilhadeiraModal showModal={showEmpilhadeiraModal} onModalClose={() => setShowEmpilhadeiraModal(false)} dados={selectedEmpilhadeira}/>
     </>  
   )

@@ -3,6 +3,7 @@ import Empilhadeiras from "../../assets/empilhadeiras.png"
 import ManutencaoEmpilhadeirasCard from "../../components/ManutencaoEmpilhadeirasCard/ManutencaoEmpilhadeirasCard";
 import { FaCog } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 function Home(){
 
@@ -51,6 +52,7 @@ function Home(){
                             <FaCog size={30} color="#F77F00"/>
                             <p>Motivo 4</p>
                         </span>
+                        <ToastContainer position="bottom-right"/>
                     </div>
                     <span className={styles.buttonSpan}>
                         <Link to={"/catalogo"}><button className={styles.button}>Consultar disponibilidade</button></Link>
