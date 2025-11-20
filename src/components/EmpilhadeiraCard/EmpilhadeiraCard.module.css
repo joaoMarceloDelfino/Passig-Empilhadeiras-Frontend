@@ -4,6 +4,9 @@
     height: 30rem;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+    background-color: black;
+
 }
 
 .imageDiv{
@@ -14,6 +17,8 @@
 .image{
     width: 1000px;
     height: 100%;
+    border-radius: 10px 10px 0 0;
+
 }
 
 .descriptionDiv{
@@ -21,14 +26,17 @@
     flex-direction: column;
     justify-content: space-between;
     border-top: 1px solid #000;
+    background-color: var(--cinza-claro);
     flex: 1;
     padding: 0.5rem 1rem;
+    border-radius: 0 0 10px 10px;
 }
 
 .titleRow{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    color: black
 }
 
 .readMoreRow{
@@ -42,4 +50,10 @@
     background-color: var(--cor-primaria);
     border: 2px solid #000;
     gap: 1rem;
+    
+}
+
+.readMoreButton:hover{
+    transform: scale(1.15);
+    transition: transform 0.2s ease;
 }

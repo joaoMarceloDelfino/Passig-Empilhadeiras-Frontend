@@ -5,7 +5,7 @@
     
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 3;
     background-color: var(--cinza-claro);
     height: 100%;
     width: 100%;
@@ -52,4 +52,140 @@
 
 .informationText{
     font-size: 1.2rem;
+}
+
+.modal {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.titleWrapper {
+  background: var(--cinza-claro); 
+}
+.modalTitle {
+  color: #111111; 
+}
+
+.informationLabel {
+  color: #222222;
+  font-weight: 600;
+}
+.informationText {
+  color: #333333; 
+}
+
+
+.readMoreButton {
+  background: var(--cor-primaria);
+  color: #ffffff;
+}
+
+@keyframes winOpen {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    filter: blur(0.3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+.modal {
+  animation: winOpen 1000ms cubic-bezier(.2,.6,.2,1) both;
+  transform-origin: bottom center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    animation: none;
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: flex-start;
+  width: 60rem;
+  height: 38rem;
+  background-color: var(--cinza-claro);
+  border: 1px solid var(--cinza-escuro);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  color: #111;
+  animation: winOpen 1000ms cubic-bezier(.2,.6,.2,1) both;
+  transform-origin: bottom center;
+}
+
+.titleWrapper {
+  width: 100%;
+  background-color: var(--cor-primaria);
+  color: #fff !important;
+  border-bottom: 1px solid var(--cinza-escuro);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.informationList {
+  padding:0 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.informationWrapper:hover {
+  transform: scale(1.05);
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+
+
+.modalTitle {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+
+
+.modal button {
+  background: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.modal button:hover {
+  filter: brightness(1.1);
+}
+
+.informationWrapper {
+  background-color: var(--cinza-claro);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+
+.informationLabel {
+  font-weight: 600;
+  color: #222;
+}
+
+.informationText {
+  color: #333;
+  text-align: right;
+  flex: 1;
 }
