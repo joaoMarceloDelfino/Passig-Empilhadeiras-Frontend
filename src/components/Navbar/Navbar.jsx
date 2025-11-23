@@ -8,7 +8,7 @@ function Navbar({setShowLoginModal, setShowRegisterModal}){
            <div className={styles.nav_links}>
                 <Link className={styles.nav_link} to={"/"}>Home</Link>
                 <Link className={styles.nav_link}>Serviços</Link>
-                <Link className={styles.nav_link}>Agendamentos</Link>
+                <Link className={styles.nav_link} to={"/agendamento/visita"}>Agendamentos</Link>
             </div> 
 
             <div className={styles.buttons}>

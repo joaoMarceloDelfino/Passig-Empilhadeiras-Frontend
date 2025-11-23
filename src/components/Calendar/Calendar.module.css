@@ -1,0 +1,37 @@
+.calendarWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.calendarDiv{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendarContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.dayOfWeek{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    background-color: transparent;
+}
+
+.button:hover{
+    opacity: 0.5;
+}
+
+.title{
+    font-size: 1.5rem;
+}

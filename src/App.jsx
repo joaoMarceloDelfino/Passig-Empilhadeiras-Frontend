@@ -10,6 +10,7 @@ import Catalog from './pages/Catalog/Catalog'
 import Footer from './components/Footer/Footer'
 import Navbar from './components/Navbar/Navbar'
 import EmpilhadeiraModal from './pages/EmpilhadeiraModal/EmpilhadeiraModal'
+import VisitSchedulePage from './pages/VisitSchedulePage/VisitSchedulePage'
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -27,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal}/>}/>
             <Route path="/catalogo" element={<Catalog setShowEmpilhadeiraModal={setShowEmpilhadeiraModal} setSelectedEmpilhadeira={setSelectedEmpilhadeira}/>}/>
+            <Route path="/agendamento/visita" element={<VisitSchedulePage/>}/>
           </Routes>
         </div>
         <Footer/>
