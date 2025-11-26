@@ -36,3 +36,25 @@
     justify-content: center;
     gap: 30px
 }
+
+.fileDiv{
+    width: 25rem;
+    display: flex;
+    gap: 2rem
+}
+
+.fileContainer{
+    display: flex;
+    padding: 2px;
+    font-size: 0.8rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    width: 100%;
+    border-radius: 2px;
+    gap: 2rem;
+}
+
+.error{
+    color: red;
+}

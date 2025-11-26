@@ -11,14 +11,34 @@ class BaseApi{
         return axios.get(api);
     }
 
-    login(){
+    login(body){
         const api = `${this.baseApiUrl}/user/login`;
-        return axios.post(api)
+        return axios.post(api, body, {withCredentials: true})
     }
 
     register(body){
         const api = `${this.baseApiUrl}/user/register`;
         return axios.post(api, body)
+    }
+
+    saveScheduledVisit(formData){
+        const api = `${this.baseApiUrl}/scheduledVisit/save`;
+        return axios.post(api, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            },
+            withCredentials: true
+        })
+    }
+
+    findDisponibleScheduledTimestamps(date){
+        const api = `${this.baseApiUrl}/scheduledVisit/findDisponibleScheduledTimestamps`;
+        return axios.get(api, {
+            params: {
+                date
+            },
+            withCredentials: true
+        })
     }
 
 }

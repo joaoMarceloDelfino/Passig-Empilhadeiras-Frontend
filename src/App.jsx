@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer'
 import Navbar from './components/Navbar/Navbar'
 import EmpilhadeiraModal from './pages/EmpilhadeiraModal/EmpilhadeiraModal'
 import VisitSchedulePage from './pages/VisitSchedulePage/VisitSchedulePage'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -38,6 +39,9 @@ function App() {
     <LoginModal showModal={showLoginModal} onModalClose={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal}/>
     <RegisterModal showModal={showRegisterModal} onModalCloseHandler={() => setShowRegisterModal(false)} setShowLoginModal={setShowLoginModal}/>
     <EmpilhadeiraModal showModal={showEmpilhadeiraModal} onModalClose={() => setShowEmpilhadeiraModal(false)} dados={selectedEmpilhadeira}/>
+    <ToastContainer
+      position="bottom-right"
+    />
     </>  
   )
 }

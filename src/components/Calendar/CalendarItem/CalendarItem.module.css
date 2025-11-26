@@ -3,9 +3,17 @@
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    background-color: var(--cinza-escuro);
     width: 4rem;
     height: 4rem;
+    cursor: default;
+}
+
+.notSelectedDate{
+    background-color: var(--cinza-escuro);
+}
+
+.selectedDate{
+    background-color: var(--cor-primaria);
 }
 
 .container:hover{

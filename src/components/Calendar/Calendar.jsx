@@ -4,9 +4,9 @@ import CalendarItem from "./CalendarItem/CalendarItem";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
-const Calendar = () => {
+const Calendar = ({selectedDate, setSelectedDate}) => {
 
-    const [daysOfWeek, setDaysOfWeek] = useState(['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'])
+    const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
     const [calendarContent, setCalendarContent] = useState([]);
     const months = [
         "janeiro", "fevereiro", "março", "abril", "maio", "junho",
@@ -34,6 +34,18 @@ const Calendar = () => {
 
     }, [monthIndex])
 
+    const onSetSelectedDate = (day, month, year) => {
+        const data = new Date(year, month, day);
+        const dataFormatada = data.toISOString().split("T")[0]
+        setSelectedDate(dataFormatada);
+    }
+    
+    const isSelectedDate = (day, month, year) => {
+        const data = new Date(year, month, day);
+        const dataFormatada = data.toISOString().split("T")[0]
+        return dataFormatada === selectedDate;
+    }   
+
     const onMonthBefore = () => {
         const monthBefore = monthIndex - 1;
 
@@ -56,6 +68,7 @@ const Calendar = () => {
         }
     }
 
+
    
 
     return (
@@ -74,7 +87,10 @@ const Calendar = () => {
                     {
                         calendarContent.map((item) => (
                         
-                            <CalendarItem dayNumber={item}/>
+                            <CalendarItem dayNumber={item}
+                                selectedDateHandler={() => onSetSelectedDate(item, monthIndex, year)}   
+                                isSelectedDate={isSelectedDate(item, monthIndex, year)} 
+                            />
                         
                         ))
 
