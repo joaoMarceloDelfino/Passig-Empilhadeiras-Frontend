@@ -41,6 +41,11 @@ class BaseApi{
         })
     }
 
+    isUserLogged(){
+        const api = `${this.baseApiUrl}/user/isUserLogged`;
+        return axios.get(api, {withCredentials: true})
+    }
+
 }
 
 export default new BaseApi();

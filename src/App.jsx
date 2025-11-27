@@ -2,7 +2,7 @@ import './App.css'
 import Header from './components/Header/Header'
  
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Home from './pages/Home/Home'
 import LoginModal from './pages/LoginModal/LoginModal'
 import RegisterModal from './pages/RegisterModal/RegisterModal'
@@ -18,6 +18,7 @@ function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showEmpilhadeiraModal, setShowEmpilhadeiraModal] = useState(false);
   const [selectedEmpilhadeira, setSelectedEmpilhadeira] = useState({});
+  const [isUserLogged, setIsUserLogged] = useState(false);
 
   return (
     <>
@@ -27,7 +28,7 @@ function App() {
         <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal}/>
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal}/>}/>
+            <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} setIsUserLoggedHandler={setIsUserLogged}/>}/>
             <Route path="/catalogo" element={<Catalog setShowEmpilhadeiraModal={setShowEmpilhadeiraModal} setSelectedEmpilhadeira={setSelectedEmpilhadeira}/>}/>
             <Route path="/agendamento/visita" element={<VisitSchedulePage/>}/>
           </Routes>

@@ -1,11 +1,16 @@
 import styles from "./Home.module.css"
-import Empilhadeiras from "../../assets/empilhadeiras.png"
 import ManutencaoEmpilhadeirasCard from "../../components/ManutencaoEmpilhadeirasCard/ManutencaoEmpilhadeirasCard";
 import { FaCog } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import BaseApi from "../../api/BaseApi";
 
-function Home(){
+function Home({setIsUserLoggedHandler}){
+
+    useEffect(() => {
+        BaseApi.isUserLogged().then((res) => setIsUserLoggedHandler(res.data)).catch(() => setIsUserLoggedHandler(false))
+    }, []);
 
     return(
         <div className={styles.container}>
