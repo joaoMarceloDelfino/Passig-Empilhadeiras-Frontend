@@ -75,7 +75,16 @@
 .empilhadeiraImage{
     width: 579px;
     height: 579px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empilhadeiraImage img {
+    width: 100%;
+    height: auto;
+    padding-bottom: 20%;
 }
 
 .rigthDiv{
@@ -109,4 +118,8 @@
     background-color: var(--cor-primaria);
     border: 2px solid #000;
     width: fit-content;
+}
+
+.motivosAlugar:hover{
+   cursor: pointer;
 }
