@@ -2,6 +2,7 @@
     border: 1px solid #000;
     height: 22rem;
     width: 21rem;
+    
 }
 
 .titleContainer {
@@ -12,12 +13,14 @@
     height: 20%;
     border-bottom: 1px solid #000;
     cursor: pointer;
+    color: #000;     
 }
 
 .content {
     display: none;        /* começa fechado */
     padding-top: 2px;
     padding-left: 4px;
+    
 }
 
 .aberto {

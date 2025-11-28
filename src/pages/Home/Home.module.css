@@ -1,6 +1,4 @@
-.container{
-     
-}
+
 
 .topContent{
     display: flex;
@@ -19,9 +17,7 @@
     gap: 1rem;
 }
 
-.imageContainer{
 
-}
 
 .title{
     font-size: 35px;
