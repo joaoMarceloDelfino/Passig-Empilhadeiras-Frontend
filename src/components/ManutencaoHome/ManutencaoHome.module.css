@@ -1,7 +1,9 @@
 .container {
     border: 1px solid #000;
-    height: 22rem;
-    width: 21rem;
+    width: 100%;
+    margin-bottom: 10px;
+    /* sem height fixa aqui */
+    
 }
 
 .titleContainer {
@@ -9,17 +11,17 @@
     justify-content: center;
     background-color: var(--cinza-escuro);
     align-items: center;
-    height: 20%;
+    width: 100%;
+    padding: 10px 0;
     border-bottom: 1px solid #000;
     cursor: pointer;
 }
 
 .content {
-    display: none;        /* começa fechado */
-    padding-top: 2px;
-    padding-left: 4px;
+    display: none;
+    padding: 8px 12px;
 }
 
 .aberto {
-    display: block;       /* aparece quando aberto */
+    display: block;
 }
