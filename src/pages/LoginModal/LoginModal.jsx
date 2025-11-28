@@ -2,15 +2,21 @@ import styles from "./Login_Modal.module.css"
 import BaseApi from "../../api/BaseApi";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
 
-
-function LoginModal({showModal, onModalClose, setShowRegisterModal, setIsUserLogged}){
+const schema = z.object({
+    email: z.string().trim().min(1, "Email é obrigatório").email("Campo deve ser um email"),
+    password: z.string().trim().min(1, "Senha é obrigatória"),
+});
+function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIsUserLogged}){
 
     const {register, 
             handleSubmit, 
             resetField, 
             formState: {errors},
-            reset} = useForm();
+            setError,
+            reset} = useForm({resolver: zodResolver(schema)});
 
     function onOpenRegisterModal(){
         onModalClose();
@@ -26,12 +32,23 @@ function LoginModal({showModal, onModalClose, setShowRegisterModal, setIsUserLog
             reset({}, {keepValues: false});
         }
 
+        const errorFunction = () => {
+            setError("email", {message: "Email ou senha incorretos"});
+        }
+
         BaseApi.login(data)
         .then(() => {
             sucessFunction();
         })
+        .catch(() => {
+            errorFunction();
+        })
 
-        
+    }
+
+    function onModalClose(){
+        reset({}, {keepValues: false});
+        onModalCloseHandler()
     }
 
     return(
@@ -45,17 +62,23 @@ function LoginModal({showModal, onModalClose, setShowRegisterModal, setIsUserLog
                         </div>
                         <div className={styles.modalContent}>
 
-                            <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
+                            <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)} noValidate>
                                 <div className={styles.inputWrapper}>
-                                    <label className={styles.emailLabel}>Email</label>
-                                    <input {...register("email")} type="email" className={styles.input}/>
+                                    <label className={styles.emailLabel}>
+                                        Email
+                                    </label>
+                                    <input {...register("email")} type="email" className={`${styles.input} ${errors.email && styles.errorDiv}`}/>
+                                    {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p> }
                                 </div>
                                 <div className={styles.inputWrapper}>
                                     <span className={styles.senhaRow}>
-                                        <label>Senha</label>
+                                        <label>
+                                            Senha
+                                        </label>
                                         <a>Esqueci minha senha</a>
                                     </span>
-                                    <input {...register("password")} type="password" className={styles.input}/>
+                                    <input {...register("password")} type="password" className={`${styles.input} ${errors.password && styles.errorDiv}`}/>
+                                    {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
                                 </div>
                                 <button className={styles.button} type="submit">
                                     Logar

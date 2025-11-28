@@ -44,7 +44,7 @@ const VisitSchedulePage = () => {
     }
 
     const validateMainentenceForm = () => {
-        const qtdErros = 0;
+        let qtdErros = 0;
 
         if(description == null || description.length == 0){
             setErrors({

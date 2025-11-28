@@ -46,6 +46,16 @@ class BaseApi{
         return axios.get(api, {withCredentials: true})
     }
 
+    existsByEmail(email){
+        const api = `${this.baseApiUrl}/user/existsByEmail`;
+        return axios.get(api, {params: {email: email}});
+    }
+
+    logout(){
+        const api = `${this.baseApiUrl}/user/logout`;
+        return axios.post(api, null, {withCredentials: true});
+    }
+
 }
 
 export default new BaseApi();
