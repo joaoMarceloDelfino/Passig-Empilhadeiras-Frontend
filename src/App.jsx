@@ -2,7 +2,7 @@ import './App.css'
 import Header from './components/Header/Header'
  
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Home from './pages/Home/Home'
 import LoginModal from './pages/LoginModal/LoginModal'
 import RegisterModal from './pages/RegisterModal/RegisterModal'
@@ -25,7 +25,7 @@ function App() {
     <div className='app-container'>
       <BrowserRouter>
         <Header/>
-        <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal}/>
+        <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} isUserLogged={isUserLogged}/>
         <div className="content">
           <Routes>
             <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} setIsUserLoggedHandler={setIsUserLogged}/>}/>
@@ -37,7 +37,7 @@ function App() {
       </BrowserRouter>
     </div>
 
-    <LoginModal showModal={showLoginModal} onModalClose={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal}/>
+    <LoginModal showModal={showLoginModal} onModalClose={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal} setIsUserLogged={setIsUserLogged}/>
     <RegisterModal showModal={showRegisterModal} onModalCloseHandler={() => setShowRegisterModal(false)} setShowLoginModal={setShowLoginModal}/>
     <EmpilhadeiraModal showModal={showEmpilhadeiraModal} onModalClose={() => setShowEmpilhadeiraModal(false)} dados={selectedEmpilhadeira}/>
     <ToastContainer

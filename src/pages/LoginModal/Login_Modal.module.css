@@ -31,38 +31,13 @@
 .modalContent{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    transform: translate(0, -20%);
     align-items: center;
     margin-top: 6rem;
     width: 55%;
     height: 100%;
     gap: 3rem;
-}
-
-.oAuthItensWrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    width: 100%;
-}
-
-.linhaDivisoriaWrapper{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.linhaDivisoria{
-    width: 100%;
-}
-
-.ouPlaceholder{
-    position: fixed;
-    background-color: #FFF;
-    font-weight: 500;
 }
 
 .loginForm{

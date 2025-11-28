@@ -126,7 +126,7 @@ const VisitSchedulePage = () => {
                                 <p>{`Extensões Suportadas: ${supportedFilesExtensions}`}</p>
                             </span>
                         </div>
-                        {/* <span className={styles.fileDiv}>
+                        <span className={styles.fileDiv}>
                             {
                                 [...files].map((file) => (
                                     <div className={styles.fileContainer}>
@@ -135,7 +135,7 @@ const VisitSchedulePage = () => {
                                     </div>
                                 ))
                             }
-                        </span> */}
+                        </span>
                     </div>
                     <div className={styles.formDiv}>
                         <button type="submit">Enviar</button>

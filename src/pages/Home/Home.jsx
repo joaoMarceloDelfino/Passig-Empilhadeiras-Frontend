@@ -9,7 +9,7 @@ import BaseApi from "../../api/BaseApi";
 function Home({setIsUserLoggedHandler}){
 
     useEffect(() => {
-        BaseApi.isUserLogged().then((res) => setIsUserLoggedHandler(res.data)).catch(() => setIsUserLoggedHandler(false))
+        BaseApi.isUserLogged().then((res) => {setIsUserLoggedHandler(res.data)}).catch(() => setIsUserLoggedHandler(false))
     }, []);
 
     return(
