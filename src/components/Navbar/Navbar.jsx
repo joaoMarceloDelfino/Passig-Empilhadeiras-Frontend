@@ -1,13 +1,13 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css"
+import BaseApi from "../../api/BaseApi";
 
-function Navbar({setShowLoginModal, setShowRegisterModal, isUserLogged}){
+function Navbar({setShowLoginModal, setShowRegisterModal, isUserLogged, setIsUserLogged}){
 
     const navigate = useNavigate();
     const location = useLocation();
 
     const goToScheduledVisitPage = () => {
-        console.log(isUserLogged)
         if(isUserLogged){
             if(location.pathname != '/agendamento/visita'){
                 navigate("/agendamento/visita");
@@ -15,6 +15,10 @@ function Navbar({setShowLoginModal, setShowRegisterModal, isUserLogged}){
         } else {    
             setShowLoginModal(true);
         }
+    }
+
+    const logout = () => {
+        BaseApi.logout().then(() => {setIsUserLogged(false); navigate("/");})
     }
     return(
         <navbar className={styles.navbar}>
@@ -31,7 +35,7 @@ function Navbar({setShowLoginModal, setShowRegisterModal, isUserLogged}){
                     <button className={styles.button} onClick={() => setShowRegisterModal(true)}>Registrar-se</button>
                     <button className={styles.button} onClick={() => setShowLoginModal(true)}>Entrar</button>
                 </> :
-                    <button className={styles.button}>Sair</button>
+                    <button className={styles.button} onClick={logout}>Sair</button>
                 }
             </div>
         </navbar>

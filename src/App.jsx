@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer'
 import Navbar from './components/Navbar/Navbar'
 import EmpilhadeiraModal from './pages/EmpilhadeiraModal/EmpilhadeiraModal'
 import VisitSchedulePage from './pages/VisitSchedulePage/VisitSchedulePage'
+import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
 
 function App() {
@@ -25,19 +26,20 @@ function App() {
     <div className='app-container'>
       <BrowserRouter>
         <Header/>
-        <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} isUserLogged={isUserLogged}/>
+        <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} isUserLogged={isUserLogged} setIsUserLogged={setIsUserLogged}/>
         <div className="content">
           <Routes>
             <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} setIsUserLoggedHandler={setIsUserLogged}/>}/>
             <Route path="/catalogo" element={<Catalog setShowEmpilhadeiraModal={setShowEmpilhadeiraModal} setSelectedEmpilhadeira={setSelectedEmpilhadeira}/>}/>
-            <Route path="/agendamento/visita" element={<VisitSchedulePage/>}/>
+          
+            <Route path="/agendamento/visita" element={<ProtectedRoute isLoggedUser={isUserLogged}><VisitSchedulePage/></ProtectedRoute>}/>
           </Routes>
         </div>
         <Footer/>
       </BrowserRouter>
     </div>
 
-    <LoginModal showModal={showLoginModal} onModalClose={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal} setIsUserLogged={setIsUserLogged}/>
+    <LoginModal showModal={showLoginModal} onModalCloseHandler={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal} setIsUserLogged={setIsUserLogged}/>
     <RegisterModal showModal={showRegisterModal} onModalCloseHandler={() => setShowRegisterModal(false)} setShowLoginModal={setShowLoginModal}/>
     <EmpilhadeiraModal showModal={showEmpilhadeiraModal} onModalClose={() => setShowEmpilhadeiraModal(false)} dados={selectedEmpilhadeira}/>
     <ToastContainer

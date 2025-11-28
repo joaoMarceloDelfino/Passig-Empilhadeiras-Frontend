@@ -1,24 +1,31 @@
 import styles from "./RegisterModal.module.css"
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import BaseApi from "../../api/BaseApi";
 import { toast } from 'react-toastify';
 import {z} from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { PatternFormat } from "react-number-format";
 
 const schema = z.object({
-    email: z.email("Campo deve ser um email").trim().min(1, "Email é obrigatorio"),
-    username: z.string().trim().min(1, "Nome de usuario é obrigatorio"),
-    cellphoneNumber: z.string().trim().min(1, "Número de telefone é obrigatorio"),
-    password: z.string().trim().min(1, "Senha é obrigatória"),
-    passwordConfirmation: z.string().trim().min(1, "Confirme a obrigatória")    
-})
+  email: z.string().trim().min(1, "Email é obrigatório").email("Campo deve ser um email"),
+  username: z.string().trim().min(1, "Nome de usuário é obrigatório"),
+  cellphoneNumber: z.string().trim().min(1, "Número de telefone é obrigatório"),
+  password: z.string().trim().min(1, "Senha é obrigatória"),
+  passwordConfirmation: z.string().trim().min(1, "A confirmação da senha é obrigatória"),
+}).refine((data) => data.password === data.passwordConfirmation, {
+  message: "As senhas não coincidem",
+  path: ["passwordConfirmation"], 
+});
+
 function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
 
     const {register, 
         handleSubmit, 
-        resetField, 
         formState: {errors},
-        reset} = useForm({resolver: zodResolver(schema)});
+        reset, 
+        setError, 
+        control, 
+        } = useForm({resolver: zodResolver(schema), defaultValues:{cellphoneNumber: ""}});
 
     function onOpenLoginModal(){
         onModalClose();
@@ -30,20 +37,26 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
         onModalCloseHandler()
     }
 
-    function onSubmit(data){
+    async function onSubmit(data){    
+
+        try {
+            const res = await BaseApi.existsByEmail(data.email);
+
+        if (res.data === true) {
+            setError("email", { message: "Email já está em uso" });
+            return;
+        }
+            await BaseApi.register(data);
+            sucessFunction();
+        } catch (err) {
+            console.error(err);
+        }
 
         const sucessFunction = () => {
             onModalClose();
             toast("Usuario registrado com sucesso!");
             reset({}, {keepValues: false});
         }
-
-        BaseApi.register(data)
-        .then(() => {
-            sucessFunction();
-        })
-
-        
     }
 
     return (
@@ -64,35 +77,52 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
                                         {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p> }
 
                                     </label>
-                                    <input {...register("email")} type="email" className={styles.input}/>
+                                    <input maxLength={255} {...register("email")} type="email" className={`${styles.input} ${errors.email && styles.errorDiv}`}/>
                                 </div>
                                 <div className={styles.inputWrapper}>
                                     <label className={styles.label}>
                                         Nome de usuário
                                         {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p> }
                                         </label>
-                                    <input {...register("username")} type="text" className={styles.input}/>
+                                    <input maxLength={100} {...register("username")} type="text" className={`${styles.input} ${errors.username && styles.errorDiv}`}/>
                                 </div>
                                 <div className={styles.inputWrapper}>
                                     <label className={styles.label}>
                                         Telefone
                                         {errors.cellphoneNumber && <p className={styles.errorMessage}>{errors.cellphoneNumber.message}</p> }
                                         </label>
-                                    <input {...register("cellphoneNumber")} type="text" className={styles.input}/>
+                                    <Controller
+                                        name="cellphoneNumber"
+                                        control={control}
+                                        rules={{ required: "Número de telefone é obrigatório" }}
+                                        render={({ field }) => (
+                                            <PatternFormat
+                                            format="(##) #####-####"
+                                            allowEmptyFormatting
+                                            mask="_"
+                                            value={field.value} 
+                                            onValueChange={(values) => {
+                                                field.onChange(values.value);
+                                            }}
+                                            className={`${styles.input} ${errors.cellphoneNumber && styles.errorDiv}`}
+                                            />
+                                        )}
+                                        />
+
                                 </div>
                                 <div className={styles.inputWrapper}>
                                     <label className={styles.label}>
                                         Senha
                                         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p> }
                                     </label>
-                                    <input {...register("password")} type="password" className={styles.input}/>
+                                    <input maxLength={100} {...register("password")} type="password" className={`${styles.input} ${errors.password && styles.errorDiv}`}/>
                                 </div>
                                 <div className={styles.inputWrapper}>
                                     <label className={styles.label}>
                                         Confirme a senha
                                         {errors.passwordConfirmation && <p className={styles.errorMessage}>{errors.passwordConfirmation.message}</p> }
                                     </label>
-                                    <input {...register("passwordConfirmation")}type="password" className={styles.input}/>
+                                    <input maxLength={100} {...register("passwordConfirmation")}type="password" className={`${styles.input} ${errors.passwordConfirmation && styles.errorDiv}`}/>
                                 </div>
                                 <button className={styles.button}  type="submit">
                                     Registrar

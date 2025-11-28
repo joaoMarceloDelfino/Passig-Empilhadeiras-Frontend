@@ -91,4 +91,13 @@
     width: 100%;    
 }
 
+.errorMessage{
+    font-size: 15px;
+    color: red;
+}
+
+.errorDiv{
+    border-color: red !important;
+}
+
  
