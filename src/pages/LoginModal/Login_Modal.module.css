@@ -11,6 +11,10 @@
     width: 100%;
 }
 
+.registrarWrapper p{
+    color: black;
+}
+
 .modal{
     display: flex;
     width: 50rem;
@@ -59,6 +63,11 @@
 .emailLabel{
     font-weight: 500;
     padding-left: 0.5rem;
+    color: black;
+}
+
+.senhaLabel{
+    color: black;
 }
 
 .input{

@@ -1,6 +1,6 @@
-.container {}
 
-.topContent {
+
+.topContent{
     display: flex;
     flex-direction: row;
     background-color: var(--cinza-claro);
@@ -17,9 +17,9 @@
     gap: 1rem;
 }
 
-.imageContainer {}
 
-.title {
+
+.title{
     font-size: 35px;
     font-weight: 900;
 }

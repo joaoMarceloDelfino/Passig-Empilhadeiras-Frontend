@@ -6,6 +6,7 @@
     width: 4rem;
     height: 4rem;
     cursor: default;
+    color: #000;              /* <- força o número a ficar preto */
 }
 
 .notSelectedDate{

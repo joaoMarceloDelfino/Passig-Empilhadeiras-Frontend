@@ -25,7 +25,7 @@
     overflow: hidden;
     padding-left: 42px;
     transition: max-height 0.1s ease;
-    color: #333;
+    color: var(--text-color);
 }
 
 .aberto {
