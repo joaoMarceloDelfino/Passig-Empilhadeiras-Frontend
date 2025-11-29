@@ -72,7 +72,7 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
                                 </div>
                                 <div className={styles.inputWrapper}>
                                     <span className={styles.senhaRow}>
-                                        <label>
+                                        <label className={styles.senhaLabel}>
                                             Senha
                                         </label>
                                         <a>Esqueci minha senha</a>
