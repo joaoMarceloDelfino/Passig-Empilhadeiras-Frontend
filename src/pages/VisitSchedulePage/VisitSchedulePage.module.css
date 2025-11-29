@@ -58,3 +58,17 @@
 .error{
     color: red;
 }
+
+.dropdown{
+    width: 100%;
+}
+
+.labelWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.externalLinkIcon{
+    color: var(--cor-primaria)
+}

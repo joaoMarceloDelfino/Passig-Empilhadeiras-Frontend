@@ -56,6 +56,11 @@ class BaseApi{
         return axios.post(api, null, {withCredentials: true});
     }
 
+    saveForkliftRentVisit(body){
+        const api = `${this.baseApiUrl}/scheduledVisit/saveForkliftRentVisit`;
+        return axios.post(api, body, {withCredentials: true});
+    }
+
 }
 
 export default new BaseApi();

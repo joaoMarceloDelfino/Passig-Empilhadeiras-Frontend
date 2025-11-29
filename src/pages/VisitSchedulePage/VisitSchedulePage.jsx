@@ -5,7 +5,8 @@ import Calendar from "../../components/Calendar/Calendar";
 import styles from "./VisitSchedulePage.module.css";
 import BaseApi from "../../api/BaseApi";
 import { toast } from "react-toastify";
-import { FaFile } from "react-icons/fa";
+import { FaExternalLinkAlt, FaFile } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const VisitSchedulePage = () => {
     const [visitReason, setVisitReason] = useState("");
@@ -20,6 +21,8 @@ const VisitSchedulePage = () => {
     const [errors, setErrors] = useState({
         description: null
     })
+    const [forklifts, setForklifts] = useState([]);
+    const [selectedForklift, setSelectedForklift] = useState({});
 
     
     useEffect(() => {
@@ -29,18 +32,31 @@ const VisitSchedulePage = () => {
     useEffect(() => {
         if(disponibleTimestamps.length > 0)
             onChangeSelectedTimestamp(0);
-    }, [disponibleTimestamps])
+
+        if(forklifts.length > 0)
+            onChangeSelectedForklift(0);
+    }, [disponibleTimestamps, forklifts])
+
+    useEffect(()  => {
+        loadForklifts();
+    }, []);
 
     const getTimestampLabel = (initialTime, finalTime) => {
         return `${initialTime.slice(0, 5)} - ${finalTime.slice(0, 5)}`;
     }
 
     const onChangeSelectedTimestamp = (index) => {
-        const value = disponibleTimestamps[index];
+        const value = disponibleTimestamps[Number(index)];
         const initialZonedDateTime = `${selectedDate}T${value.initialTime}-03:00`;
         const finalZonedDateTime = `${selectedDate}T${value.finalTime}-03:00`;
         setInitialDatetime(initialZonedDateTime);
         setFinalDateTime(finalZonedDateTime);
+    }
+
+    const onChangeSelectedForklift = (index) => {
+        const value = forklifts[index];
+        console.log(value)
+        setSelectedForklift(value);
     }
 
     const validateMainentenceForm = () => {
@@ -83,8 +99,30 @@ const VisitSchedulePage = () => {
             });
     }
 
+    const onSubmitRentForm = (e) => {
+        e.preventDefault();
+
+        
+        const body = {
+            initialScheduledTime: initialDateTime,
+            endScheduledTime: finalDateTime,
+            forkiliftDtoV1: selectedForklift,
+            description: description
+        }
+
+        BaseApi.saveForkliftRentVisit(body)
+        .then(() => {
+            toast("Agendamento Salvo Com Sucesso!");
+            loadDisponibleScheduledTimestamps();
+        });
+    }
+
     const loadDisponibleScheduledTimestamps = () => {
         BaseApi.findDisponibleScheduledTimestamps(selectedDate).then(res => setDisponibleTimestamps(res.data));
+    }
+
+    const loadForklifts = () => {
+        BaseApi.findAllEmpilhadeiras().then(res => setForklifts(res.data));
     }
     
 
@@ -94,7 +132,7 @@ const VisitSchedulePage = () => {
                 <>
                     <div className={styles.formDiv}>
                         <p className={styles.formTitle}>Selecione o Horário da Reserva</p>
-                        <select onChange={(e) => onChangeSelectedTimestamp(e)}>
+                        <select onChange={(e) => onChangeSelectedTimestamp(e.target.value)}>
                             {
                                 disponibleTimestamps.map((item, index) => {
                                     return <option key={index} value={index}>{getTimestampLabel(item.initialTime, item.finalTime)}</option>
@@ -143,11 +181,51 @@ const VisitSchedulePage = () => {
 
                 </>
             )
+        } else if(visitReason == "Aluguel") {
+            return(
+                <>
+                     <div className={styles.formDiv}>
+                        <p className={styles.formTitle}>Selecione o Horário da Reserva</p>
+                        <select onChange={(e) => onChangeSelectedTimestamp(e.target.value)}>
+                            {
+                                disponibleTimestamps.map((item, index) => {
+                                    return <option key={index} value={index}>{getTimestampLabel(item.initialTime, item.finalTime)}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+                     <div className={styles.formDiv}>
+                        <span className={styles.labelWrapper}>
+                            <p className={styles.formTitle}>Selecione a Empilhadeira Desejada</p>
+                            <Link to={"/catalogo"} className={styles.buttonWrapper} title="Consultar Empilhadeiras">
+                                    <FaExternalLinkAlt className={styles.externalLinkIcon} size={20}/>
+                            </Link>
+                        </span>
+                        <select className={styles.dropdown} onChange={(e) => onChangeSelectedForklift(e.target.value)}> 
+                            {
+                                forklifts.map((item, index) => {
+                                    return <option key={item.id} value={index} >
+                                        {`${item.name} - ${item.manufacturer} ${item.model} - ${item.fabricationYear} `}
+                                </option>
+                                })
+                            }
+                        </select>
+                    </div>
+                    <div className={styles.formDiv}>
+                        <p className={styles.formTitle}>Escreva Uma Breve Descrição do Problema</p>
+                        <textarea onChange={(e) => setDescription(e.target.value.trim())}/>
+                        {errors.description && <p className={styles.error}>{errors.description}</p>}
+                    </div>
+                    <div className={styles.formDiv}>
+                        <button type="submit">Enviar</button>
+                    </div>
+                </>
+            )
         }
     }
     return (
         <PageBase title="Agendamento De Visita">
-            <form className={styles.visitScheduleForm} onSubmit={visitReason == 'Manutencao' ? onSubmitMainentenceForm : null}>
+            <form className={styles.visitScheduleForm} onSubmit={visitReason == 'Manutencao' ? onSubmitMainentenceForm : onSubmitRentForm}>
                 <div className={styles.formDiv}>
                     <p className={styles.formTitle}>Selecione a data do agendamento</p>
                     <Calendar
