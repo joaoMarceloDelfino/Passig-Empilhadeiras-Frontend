@@ -1,66 +1,53 @@
-import axios from "axios";
+import api from "../apiInterceptor";
 
-class BaseApi{
+class BaseApi {
+  findAllEmpilhadeiras() {
+    return api.get("/forklifts/findAll");
+  }
 
-    constructor(){
-        this.baseApiUrl = "http://localhost:8080/api";
-    }
+  login(body) {
+    return api.post("/user/login", body, { withCredentials: true });
+  }
 
-    findAllEmpilhadeiras(){
-        const api = `${this.baseApiUrl}/forklifts/findAll`;
-        return axios.get(api);
-    }
+  register(body) {
+    return api.post("/user/register", body);
+  }
 
-    login(body){
-        const api = `${this.baseApiUrl}/user/login`;
-        return axios.post(api, body, {withCredentials: true})
-    }
+  saveScheduledVisit(formData) {
+    return api.post("/scheduledVisit/save", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
+    });
+  }
 
-    register(body){
-        const api = `${this.baseApiUrl}/user/register`;
-        return axios.post(api, body)
-    }
+  findDisponibleScheduledTimestamps(date) {
+    return api.get("/scheduledVisit/findDisponibleScheduledTimestamps", {
+      params: { date },
+      withCredentials: true,
+    });
+  }
 
-    saveScheduledVisit(formData){
-        const api = `${this.baseApiUrl}/scheduledVisit/save`;
-        return axios.post(api, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            withCredentials: true
-        })
-    }
+  isUserLogged() {
+    return api.get("/user/isUserLogged", { withCredentials: true });
+  }
 
-    findDisponibleScheduledTimestamps(date){
-        const api = `${this.baseApiUrl}/scheduledVisit/findDisponibleScheduledTimestamps`;
-        return axios.get(api, {
-            params: {
-                date
-            },
-            withCredentials: true
-        })
-    }
+  existsByEmail(email) {
+    return api.get("/user/existsByEmail", { params: { email } });
+  }
 
-    isUserLogged(){
-        const api = `${this.baseApiUrl}/user/isUserLogged`;
-        return axios.get(api, {withCredentials: true})
-    }
+  logout() {
+    return api.post("/user/logout", null, { withCredentials: true });
+  }
 
-    existsByEmail(email){
-        const api = `${this.baseApiUrl}/user/existsByEmail`;
-        return axios.get(api, {params: {email: email}});
-    }
+  saveForkliftRentVisit(body) {
+    return api.post("/scheduledVisit/saveForkliftRentVisit", body, {
+      withCredentials: true,
+    });
+  }
 
-    logout(){
-        const api = `${this.baseApiUrl}/user/logout`;
-        return axios.post(api, null, {withCredentials: true});
-    }
-
-    saveForkliftRentVisit(body){
-        const api = `${this.baseApiUrl}/scheduledVisit/saveForkliftRentVisit`;
-        return axios.post(api, body, {withCredentials: true});
-    }
-
+  refresh() {
+    return api.post("/user/refresh", null, { withCredentials: true });
+  }
 }
 
 export default new BaseApi();
