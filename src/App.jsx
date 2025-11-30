@@ -2,6 +2,7 @@ import './App.css'
 import Header from './components/Header/Header'
  
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import Home from './pages/Home/Home'
 import LoginModal from './pages/LoginModal/LoginModal'
@@ -33,6 +34,7 @@ function App() {
             <Route path="/catalogo" element={<Catalog setShowEmpilhadeiraModal={setShowEmpilhadeiraModal} setSelectedEmpilhadeira={setSelectedEmpilhadeira}/>}/>
           
             <Route path="/agendamento/visita" element={<ProtectedRoute isLoggedUser={isUserLogged}><VisitSchedulePage/></ProtectedRoute>}/>
+            <Route path="*" element={<Navigate to="/" replace />}/>
           </Routes>
         </div>
         <Footer/>

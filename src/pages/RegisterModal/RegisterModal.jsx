@@ -87,7 +87,7 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
                                 </div>
                                 <div className={styles.inputWrapper}>
                                     <label className={styles.label}>
-                                        Nome de usuário
+                                        Nome Completo
                                         {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p> }
                                         </label>
                                     <input maxLength={100} {...register("username")} type="text" className={`${styles.input} ${errors.username && styles.errorDiv}`}/>

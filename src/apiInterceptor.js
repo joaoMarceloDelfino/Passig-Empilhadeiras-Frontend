@@ -15,7 +15,7 @@ api.interceptors.response.use(
     if ((error.response?.status === 403) && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        if(path.startsWith("/user/refresh")){
+        if(path.startsWith("/user/refresh") || path.startsWith("/user/login")){
           return Promise.reject(error);
         }
         await api.post("/user/refresh", null, { withCredentials: true });
