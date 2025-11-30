@@ -1,5 +1,6 @@
 import styles from "./EmpilhadeiraModal.module.css";
 import DateHelper from "../../helpers/DateHelper";
+import { findStatusByCode } from "../../enums/ForkliftStatusEnum";
 
 function EmpilhadeiraModal({showModal, onModalClose, dados}) {
     return (
@@ -31,6 +32,10 @@ function EmpilhadeiraModal({showModal, onModalClose, dados}) {
                             <span className={styles.informationWrapper}>
                                 <p className={styles.informationLabel}>Data de aquisição: </p>
                                 <p className={styles.informationText}>{DateHelper.dateToBrFormat(dados.aquisitionDate)}</p>
+                            </span>
+                            <span className={styles.informationWrapper}>
+                                <p className={styles.informationLabel}>Status: </p>
+                                <p className={styles.informationText}>{findStatusByCode(dados.status).description}</p>
                             </span>
                         </div>
                     </main>

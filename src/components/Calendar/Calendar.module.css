@@ -26,6 +26,7 @@
 
 .button{
     background-color: transparent;
+    color: var(--cor-primaria)
 }
 
 .button:hover{

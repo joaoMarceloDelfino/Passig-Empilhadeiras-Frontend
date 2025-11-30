@@ -38,21 +38,24 @@
 }
 
 .fileDiv{
-    width: 25rem;
+    width: 100%;
     display: flex;
-    gap: 2rem
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem
 }
 
 .fileContainer{
     display: flex;
+    width: fit-content;
     padding: 2px;
     font-size: 0.8rem;
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    width: 100%;
-    border-radius: 2px;
+    border-radius: 6px;
     gap: 2rem;
+    padding: 1rem;
 }
 
 .error{
@@ -61,6 +64,8 @@
 
 .dropdown{
     width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
 }
 
 .labelWrapper{
@@ -71,4 +76,10 @@
 
 .externalLinkIcon{
     color: var(--cor-primaria)
+}
+
+.textArea{
+    font-size: large;
+    padding: 0.5rem;
+    border-radius: 5px;
 }

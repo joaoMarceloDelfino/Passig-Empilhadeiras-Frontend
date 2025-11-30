@@ -1,0 +1,29 @@
+.notFoundWrapper{
+    display: flex;
+    height: 100%;
+    margin-top: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+    gap: 1rem;
+    position: relative;
+    transform: translate(0, 25%);
+}
+
+.descriptionWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFoundTitle{
+    font-size: 2rem;
+}
+
+.notFoundSubtitle{
+    font-size: 1.2rem
+}
+

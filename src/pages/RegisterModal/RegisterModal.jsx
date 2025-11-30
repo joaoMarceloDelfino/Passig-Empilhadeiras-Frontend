@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import {z} from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PatternFormat } from "react-number-format";
+import { useState } from "react";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const schema = z.object({
   email: z.string().trim().min(1, "Email é obrigatório").email("Campo deve ser um email"),
@@ -17,8 +19,10 @@ const schema = z.object({
   path: ["passwordConfirmation"], 
 });
 
-function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
 
+function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
+    const [isLoading, setIsLoading] = useState(false);
+    
     const {register, 
         handleSubmit, 
         formState: {errors},
@@ -38,8 +42,14 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
     }
 
     async function onSubmit(data){    
+        const sucessFunction = () => {
+            onModalClose();
+            toast("Usuario registrado com sucesso!");
+            reset({}, {keepValues: false});
+        }
 
         try {
+            setIsLoading(true)
             const res = await BaseApi.existsByEmail(data.email);
 
         if (res.data === true) {
@@ -50,13 +60,11 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
             sucessFunction();
         } catch (err) {
             console.error(err);
+        } finally {
+            setIsLoading(false);
         }
 
-        const sucessFunction = () => {
-            onModalClose();
-            toast("Usuario registrado com sucesso!");
-            reset({}, {keepValues: false});
-        }
+
     }
 
     return (
@@ -66,9 +74,7 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
                 <div className={styles.bluredBackground} onClick={onModalClose}>
                     <main className={styles.modal} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.image}>
-                            <h1>Imagem</h1> {/*Adicionar imagem futuramente*/}
                         </div>
-
                         <div className={styles.modalContent}>
                             <form  noValidate className={styles.registerForm} onSubmit={handleSubmit(onSubmit)}>
                                 <div className={styles.inputWrapper}>
@@ -125,7 +131,11 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
                                     <input maxLength={100} {...register("passwordConfirmation")}type="password" className={`${styles.input} ${errors.passwordConfirmation && styles.errorDiv}`}/>
                                 </div>
                                 <button className={styles.button}  type="submit">
-                                    Registrar
+                                    {
+                                        !isLoading ? 
+                                            "Registrar"
+                                        : <LoadingSpinner size={36}/>
+                                    }
                                 </button>
                                 <div className={styles.registerWrapper}>
                                     <p>Já possui uma conta?</p>

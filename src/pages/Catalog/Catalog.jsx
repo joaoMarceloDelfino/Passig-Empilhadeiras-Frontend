@@ -2,18 +2,21 @@ import styles from "./Catalog.module.css"
 import { useState, useEffect } from "react";
 import EmpilhadeiraCard from "../../components/EmpilhadeiraCard/EmpilhadeiraCard";
 import BaseApi from "../../api/BaseApi";
-import { FaSearch } from "react-icons/fa";
 import PageBase from "../PageBase/PageBase";
+import NotFound from "../../components/NotFound/NotFound";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 
 function Catalog({setShowEmpilhadeiraModal, setSelectedEmpilhadeira}){
     
     const [empilhadeiras, setEmpilhadeiras] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         BaseApi.
         findAllEmpilhadeiras().
-        then((res) => setEmpilhadeiras(res.data));
+        then((res) => {setEmpilhadeiras(res.data); setIsLoading(false);});
     }, [])
 
     const openModal = (dados) => {
@@ -21,6 +24,8 @@ function Catalog({setShowEmpilhadeiraModal, setSelectedEmpilhadeira}){
         setShowEmpilhadeiraModal(true);
     }
 
+    if(isLoading) return <LoadingSpinner/>
+    
     return(
         
         <PageBase title="Catálogo">
@@ -37,13 +42,11 @@ function Catalog({setShowEmpilhadeiraModal, setSelectedEmpilhadeira}){
                             )) 
                         }
                     </div> :
-                    <div className={styles.notFoundWrapper}>
-                        <FaSearch size={50}/>
-                        <div className={styles.descriptionWrapper}>
-                            <h2 className={styles.notFoundTitle}>Nenhum resultado encontrado!</h2>
-                            <p className={styles.notFoundSubtitle}>Não foi encontrada nenhuma empilhadeira disponível no momento.</p>
-                        </div>
-                    </div>
+                    <NotFound 
+                        title={"Nenhum resultado encontrado!"} 
+                        text={"Não foi encontrada nenhuma empilhadeira disponível no momento."}
+                    />
+
             }
         </PageBase> 
                           

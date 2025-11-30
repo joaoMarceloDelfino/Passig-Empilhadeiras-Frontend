@@ -49,25 +49,6 @@ function Home({ setIsUserLoggedHandler }) {
                 </div>
                 <div className={styles.rigthDiv}>
                     <h1 className={styles.servicesTitle}>Motivos para alugar nossas empilhadeiras</h1>
-                    {/* <div className={styles.motivosAlugarContainer}>
-                        <span className={styles.motivosAlugar}>
-                            <FaCog size={30} color="#F77F00" />
-                            <p>Redução de Custos</p>
-                        </span>
-                        <span className={styles.motivosAlugar}>
-                            <FaCog size={30} color="#F77F00" />
-                            <p>Equipamentos Confiáveis</p>
-                        </span>
-                        <span className={styles.motivosAlugar}>
-                            <FaCog size={30} color="#F77F00" />
-                            <p>Manutenção Inclusa</p>
-                        </span>
-                        <span className={styles.motivosAlugar}>
-                            <FaCog size={30} color="#F77F00" />
-                            <p>Suporte Técnico Rápido</p>
-                        </span>
-                        <ToastContainer position="bottom-right" />
-                    </div> */}
 
                     <div className={styles.motivosAlugarContainer}>
                         <MotivoAlugar
@@ -92,7 +73,7 @@ function Home({ setIsUserLoggedHandler }) {
                     </div>
 
                     <span className={styles.buttonSpan}>
-                        <Link to={"/catalogo"}><button className={styles.button}>Consultar disponibilidade</button></Link>
+                        <Link to={"/catalogo"}><button className={styles.button}>Consultar Catálogo</button></Link>
                     </span>
                 </div>
             </div>

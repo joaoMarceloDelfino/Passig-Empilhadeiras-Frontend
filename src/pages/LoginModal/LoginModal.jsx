@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
+import { useState } from "react";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const schema = z.object({
     email: z.string().trim().min(1, "Email é obrigatório").email("Campo deve ser um email"),
@@ -17,6 +19,8 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
             formState: {errors},
             setError,
             reset} = useForm({resolver: zodResolver(schema)});
+
+    const[isLoading, setIsLoading] = useState(false);
 
     function onOpenRegisterModal(){
         onModalClose();
@@ -36,6 +40,8 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
             setError("email", {message: "Email ou senha incorretos"});
         }
 
+        setIsLoading(true);
+
         BaseApi.login(data)
         .then(() => {
             sucessFunction();
@@ -43,6 +49,7 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
         .catch(() => {
             errorFunction();
         })
+        .finally(() => setIsLoading(false));
 
     }
 
@@ -58,7 +65,6 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
                 <div className={styles.bluredBackground} onClick={onModalClose}>
                     <main className={styles.modal} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.image}>
-                            {/* <h1>Imagem</h1> Adicionar imagem futuramente */}
                         </div>
                         <div className={styles.modalContent}>
 
@@ -75,13 +81,16 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
                                         <label className={styles.senhaLabel}>
                                             Senha
                                         </label>
-                                        <a>Esqueci minha senha</a>
                                     </span>
                                     <input {...register("password")} type="password" className={`${styles.input} ${errors.password && styles.errorDiv}`}/>
                                     {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
                                 </div>
                                 <button className={styles.button} type="submit">
-                                    Logar
+                                    {
+                                        !isLoading ? 
+                                            "Logar"
+                                        : <LoadingSpinner size={36}/>
+                                    }
                                 </button>
                                 <div className={styles.registrarWrapper}>
                                     <p>Ainda não possui uma conta?</p>

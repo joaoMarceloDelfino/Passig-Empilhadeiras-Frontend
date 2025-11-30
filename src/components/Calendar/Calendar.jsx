@@ -29,7 +29,6 @@ const Calendar = ({selectedDate, setSelectedDate}) => {
             content.push(null);
         }
 
-        console.log("oi")
         setCalendarContent(content);
 
     }, [monthIndex])
@@ -39,15 +38,31 @@ const Calendar = ({selectedDate, setSelectedDate}) => {
         const dataFormatada = data.toISOString().split("T")[0]
         setSelectedDate(dataFormatada);
     }
+
+    const isSelectedDateBeforeToday = (day, month, year) => {
+        const selectedDate = new Date(year, month, day);
+        selectedDate.setHours(0, 0, 0, 0); 
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        return selectedDate < today;
+    };
+
     
     const isSelectedDate = (day, month, year) => {
+
+        if(day === null) return false;
+
         const data = new Date(year, month, day);
         const dataFormatada = data.toISOString().split("T")[0]
         return dataFormatada === selectedDate;
-    }   
+    }       
 
     const onMonthBefore = () => {
         const monthBefore = monthIndex - 1;
+
+        if(new Date(year, monthBefore, 1) < new Date(new Date().getFullYear(), new Date().getMonth(), 1)) return;
 
         if(monthBefore >= 0) {
             setMonthIndex(monthBefore);
@@ -89,7 +104,8 @@ const Calendar = ({selectedDate, setSelectedDate}) => {
                         
                             <CalendarItem dayNumber={item}
                                 selectedDateHandler={() => onSetSelectedDate(item, monthIndex, year)}   
-                                isSelectedDate={isSelectedDate(item, monthIndex, year)} 
+                                isSelectedDate={() => isSelectedDate(item, monthIndex, year)} 
+                                isSelectedDateBeforeToday={() => isSelectedDateBeforeToday(item, monthIndex, year)}
                             />
                         
                         ))

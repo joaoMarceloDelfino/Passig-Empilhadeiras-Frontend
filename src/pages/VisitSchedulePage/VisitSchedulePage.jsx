@@ -7,11 +7,13 @@ import BaseApi from "../../api/BaseApi";
 import { toast } from "react-toastify";
 import { FaExternalLinkAlt, FaFile } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import NotFound from "../../components/NotFound/NotFound";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const VisitSchedulePage = () => {
     const [visitReason, setVisitReason] = useState("");
     const fileRef = useRef();
-    const [supportedFilesExtensions, setSupportedFilesExtensions] = useState(".jpg, .webp, .png, .jpeg, .png");
+    const [supportedFilesExtensions, setSupportedFilesExtensions] = useState(".jpg, .webp, .png, .jpeg");
     const [disponibleTimestamps, setDisponibleTimestamps] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
     const [initialDateTime, setInitialDatetime] = useState([]);
@@ -23,6 +25,7 @@ const VisitSchedulePage = () => {
     })
     const [forklifts, setForklifts] = useState([]);
     const [selectedForklift, setSelectedForklift] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     
     useEffect(() => {
@@ -118,21 +121,50 @@ const VisitSchedulePage = () => {
     }
 
     const loadDisponibleScheduledTimestamps = () => {
-        BaseApi.findDisponibleScheduledTimestamps(selectedDate).then(res => setDisponibleTimestamps(res.data));
+        setIsLoading(true);
+        BaseApi.findDisponibleScheduledTimestamps(selectedDate).then(res => {
+            setDisponibleTimestamps(res.data);
+            setIsLoading(false);
+        });
     }
 
     const loadForklifts = () => {
-        BaseApi.findAllEmpilhadeiras().then(res => setForklifts(res.data));
+        setIsLoading(true);
+        BaseApi.findAllEmpilhadeiras().then(res => {
+            setForklifts(res.data.filter(x => x.status === "FO"));
+            setIsLoading(false);
+        });
     }
     
+    const onChangeFiles = (e) => {
+        const validExtensions = [".jpg", ".jpeg", ".png", ".webp"];
+        const files = Array.from(e.target.files).filter(file =>
+            validExtensions.some(ext => file.name.toLowerCase().endsWith(ext))
+        );
+
+        console.log(files)
+        setFiles(files);
+
+    }
 
     const renderConditionalForm = () => {
+
+        if(isLoading) return <LoadingSpinner/>
+
+        if(disponibleTimestamps.length <= 0) {
+                return <NotFound 
+                    title="Horários disponíveis não encontrados"
+                    text="Não há horários dísponiveis para o dia selecionado"
+                />
+        }
+
         if(visitReason === 'Manutencao') {
+            
             return (
                 <>
                     <div className={styles.formDiv}>
                         <p className={styles.formTitle}>Selecione o Horário da Reserva</p>
-                        <select onChange={(e) => onChangeSelectedTimestamp(e.target.value)}>
+                        <select onChange={(e) => onChangeSelectedTimestamp(e.target.value)} className={styles.dropdown}>
                             {
                                 disponibleTimestamps.map((item, index) => {
                                     return <option key={index} value={index}>{getTimestampLabel(item.initialTime, item.finalTime)}</option>
@@ -142,7 +174,7 @@ const VisitSchedulePage = () => {
                     </div>
                     <div className={styles.formDiv}>
                         <p className={styles.formTitle}>Escreva Uma Breve Descrição do Problema</p>
-                        <textarea onChange={(e) => setDescription(e.target.value.trim())}/>
+                        <textarea onChange={(e) => setDescription(e.target.value.trim())} className={styles.textArea}/>
                         {errors.description && <p className={styles.error}>{errors.description}</p>}
                     </div>
                     <div className={styles.formDiv}>
@@ -152,8 +184,8 @@ const VisitSchedulePage = () => {
                             multiple
                             ref={fileRef}
                             style={{display:"none"}}
-                            accept={supportedFilesExtensions}
-                            onChange={(e) => {setFiles(e.target.files)}}
+                            accept=".jpg,.jpeg,.png,.webp"
+                            onChange={onChangeFiles}
                         />
                         <div className={styles.fileChooserWrapper} onClick={() => fileRef.current.click()}>
                             <span className={styles.fileChooserRow}>
@@ -180,49 +212,58 @@ const VisitSchedulePage = () => {
                     </div>
 
                 </>
+              
             )
         } else if(visitReason == "Aluguel") {
+
+            if(forklifts.length <= 0 ) {
+                return <NotFound title={"Nenhum resultado encontrado!"} text={"Não foi encontrada nenhuma empilhadeira disponível no momento."}/>
+            }
+
             return(
-                <>
-                     <div className={styles.formDiv}>
-                        <p className={styles.formTitle}>Selecione o Horário da Reserva</p>
-                        <select onChange={(e) => onChangeSelectedTimestamp(e.target.value)}>
-                            {
-                                disponibleTimestamps.map((item, index) => {
-                                    return <option key={index} value={index}>{getTimestampLabel(item.initialTime, item.finalTime)}</option>
-                                })
-                            }
-                        </select>
-                    </div>
-                     <div className={styles.formDiv}>
-                        <span className={styles.labelWrapper}>
-                            <p className={styles.formTitle}>Selecione a Empilhadeira Desejada</p>
-                            <Link to={"/catalogo"} className={styles.buttonWrapper} title="Consultar Empilhadeiras">
-                                    <FaExternalLinkAlt className={styles.externalLinkIcon} size={20}/>
-                            </Link>
-                        </span>
-                        <select className={styles.dropdown} onChange={(e) => onChangeSelectedForklift(e.target.value)}> 
-                            {
-                                forklifts.map((item, index) => {
-                                    return <option key={item.id} value={index} >
-                                        {`${item.name} - ${item.manufacturer} ${item.model} - ${item.fabricationYear} `}
-                                </option>
-                                })
-                            }
-                        </select>
-                    </div>
-                    <div className={styles.formDiv}>
-                        <p className={styles.formTitle}>Escreva Uma Breve Descrição do Problema</p>
-                        <textarea onChange={(e) => setDescription(e.target.value.trim())}/>
-                        {errors.description && <p className={styles.error}>{errors.description}</p>}
-                    </div>
-                    <div className={styles.formDiv}>
-                        <button type="submit">Enviar</button>
-                    </div>
-                </>
+                    <>
+                         <div className={styles.formDiv}>
+                            <p className={styles.formTitle}>Selecione o Horário da Reserva</p>
+                            <select onChange={(e) => onChangeSelectedTimestamp(e.target.value)} className={styles.dropdown}>
+                                {
+                                    disponibleTimestamps.map((item, index) => {
+                                        return <option key={index} value={index}>{getTimestampLabel(item.initialTime, item.finalTime)}</option>
+                                    })
+                                }
+                            </select>
+                        </div>
+                         <div className={styles.formDiv}>
+                            <span className={styles.labelWrapper}>
+                                <p className={styles.formTitle}>Selecione a Empilhadeira Desejada</p>
+                                <Link to={"/catalogo"} className={styles.buttonWrapper} title="Consultar Empilhadeiras">
+                                        <FaExternalLinkAlt className={styles.externalLinkIcon} size={20}/>
+                                </Link>
+                            </span>
+                            <select className={styles.dropdown} onChange={(e) => onChangeSelectedForklift(e.target.value)}> 
+                                {
+                                    forklifts.map((item, index) => {
+                                        return <option key={item.id} value={index} >
+                                            {`${item.name} - ${item.manufacturer} ${item.model} - ${item.fabricationYear} `}
+                                    </option>
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className={styles.formDiv}>
+                            <p className={styles.formTitle}>Escreva Uma Breve Descrição (opcional)</p>
+                            <textarea onChange={(e) => setDescription(e.target.value.trim())} className={styles.textArea}/>
+                            {errors.description && <p className={styles.error}>{errors.description}</p>}
+                        </div>
+                        <div className={styles.formDiv}>
+                            <button type="submit">Enviar</button>
+                        </div>
+                    </>
             )
         }
     }
+
+    // if(isLoading) return <LoadingSpinner/>
+
     return (
         <PageBase title="Agendamento De Visita">
             <form className={styles.visitScheduleForm} onSubmit={visitReason == 'Manutencao' ? onSubmitMainentenceForm : onSubmitRentForm}>
@@ -235,7 +276,7 @@ const VisitSchedulePage = () => {
                 </div>
                 <div className={styles.formDiv}>
                     <p className={styles.formTitle}>Selecione o motivo da visita</p>
-                    <select onChange={(e) => {setVisitReason(e.target.value) }}>
+                    <select onChange={(e) => {setVisitReason(e.target.value) }} className={styles.dropdown}>
                         <option value="Selecione">Selecionar</option>
                         <option value="Manutencao">Manutencao</option>
                         <option value="Aluguel">Aluguel</option>

@@ -6,7 +6,7 @@
     width: 4rem;
     height: 4rem;
     cursor: default;
-    color: #000;              /* <- força o número a ficar preto */
+    color: #000;           
 }
 
 .notSelectedDate{
@@ -19,4 +19,8 @@
 
 .container:hover{
     opacity: 0.7;
+}
+
+.beforeDate{
+    background-color: var(--cinza-claro);
 }

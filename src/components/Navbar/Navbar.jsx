@@ -23,9 +23,8 @@ function Navbar({setShowLoginModal, setShowRegisterModal, isUserLogged, setIsUse
     return(
         <navbar className={styles.navbar}>
            <div className={styles.nav_links}>
-                <Link className={styles.nav_link} to={"/"}>Home</Link>
-                <Link className={styles.nav_link}>Serviços</Link>
-                <a className={styles.nav_link} onClick={goToScheduledVisitPage}>Agendamentos</a>
+                <Link className={styles.nav_link} to={"/"}>Página Inicial</Link>
+                <a className={styles.nav_link} onClick={goToScheduledVisitPage}>Agendar Horário</a>
             </div> 
 
             <div className={styles.buttons}>

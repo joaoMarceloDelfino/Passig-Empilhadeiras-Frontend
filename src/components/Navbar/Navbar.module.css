@@ -10,13 +10,12 @@
 .nav_links{
     display: flex;
     flex-direction: row;
-    padding: calc(var(--header-logo-left-padding) + 3rem);
+    padding: calc(var(--header-logo-left-padding));
     gap: 5rem;
 }
 
 .nav_link{
     color: black;
-    
 }
 
 .nav_link:hover{
