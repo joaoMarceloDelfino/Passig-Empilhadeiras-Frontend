@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaCog } from "react-icons/fa";
-import styles from "./MotivoAlugar.module.css";
+import styles from "./motivoAlugar.module.css";
 
 export default function MotivoAlugar({ titulo, texto }) {
   const [aberto, setAberto] = useState(false);
