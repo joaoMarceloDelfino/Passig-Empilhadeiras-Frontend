@@ -1,5 +1,5 @@
 import { FaSearch } from "react-icons/fa";
-import styles from "./NotFOund.module.css";
+import styles from "./NotFound.module.css";
 
 const NotFound = ({title, text}) => {
 
