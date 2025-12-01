@@ -58,7 +58,6 @@ const VisitSchedulePage = () => {
 
     const onChangeSelectedForklift = (index) => {
         const value = forklifts[index];
-        console.log(value)
         setSelectedForklift(value);
     }
 
@@ -97,7 +96,15 @@ const VisitSchedulePage = () => {
 
         BaseApi.saveScheduledVisit(formData)
         .then(() => {
-                toast("Agendamento Salvo Com Sucesso!");
+                toast.success("Agendamento de manutenção Salvo Com Sucesso!", {
+                position: "bottom-right",
+                autoClose: 3000,     
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored"      
+                });
                 loadDisponibleScheduledTimestamps();
             });
     }
@@ -115,7 +122,15 @@ const VisitSchedulePage = () => {
 
         BaseApi.saveForkliftRentVisit(body)
         .then(() => {
-            toast("Agendamento Salvo Com Sucesso!");
+            toast.success("Agendamento De Aluguel Salvo Com Sucesso!", {
+            position: "bottom-right",
+            autoClose: 3000,     
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored"      
+            });
             loadDisponibleScheduledTimestamps();
         });
     }
@@ -142,7 +157,6 @@ const VisitSchedulePage = () => {
             validExtensions.some(ext => file.name.toLowerCase().endsWith(ext))
         );
 
-        console.log(files)
         setFiles(files);
 
     }

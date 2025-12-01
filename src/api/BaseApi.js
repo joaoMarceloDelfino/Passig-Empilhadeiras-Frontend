@@ -48,6 +48,14 @@ class BaseApi {
   refresh() {
     return api.post("/user/refresh", null, { withCredentials: true });
   }
+
+  getLoggedUser() {
+    return api.get("/user/getLoggedUser", {withCredentials: true});
+  }
+
+  findScheduledVisitByType(type){
+    return api.get("/scheduledVisit/findScheduledVisitByType", {params: { type }, withCredentials: true})
+  }
 }
 
 export default new BaseApi();

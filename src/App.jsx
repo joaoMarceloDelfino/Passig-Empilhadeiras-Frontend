@@ -14,6 +14,7 @@ import EmpilhadeiraModal from './pages/EmpilhadeiraModal/EmpilhadeiraModal'
 import VisitSchedulePage from './pages/VisitSchedulePage/VisitSchedulePage'
 import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
 import { ToastContainer } from 'react-toastify'
+import MyScheduledVisits from './pages/MyScheduledVisits/MyScheduledVisits'
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -21,27 +22,29 @@ function App() {
   const [showEmpilhadeiraModal, setShowEmpilhadeiraModal] = useState(false);
   const [selectedEmpilhadeira, setSelectedEmpilhadeira] = useState({});
   const [isUserLogged, setIsUserLogged] = useState(false);
+  const [loggedUser, setLoggedUser] = useState(false);
 
   return (
     <>
     <div className='app-container'>
       <BrowserRouter>
         <Header/>
-        <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} isUserLogged={isUserLogged} setIsUserLogged={setIsUserLogged}/>
+        <Navbar setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} isUserLogged={isUserLogged} setIsUserLogged={setIsUserLogged} loggedUser={loggedUser}/>
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} setIsUserLoggedHandler={setIsUserLogged}/>}/>
+            <Route path="/" element={<Home setShowLoginModal={setShowLoginModal} setShowRegisterModal={setShowRegisterModal} setIsUserLoggedHandler={setIsUserLogged} setLoggedUserHandler={setLoggedUser}/>}/>
             <Route path="/catalogo" element={<Catalog setShowEmpilhadeiraModal={setShowEmpilhadeiraModal} setSelectedEmpilhadeira={setSelectedEmpilhadeira}/>}/>
           
-            <Route path="/agendamento/visita" element={<ProtectedRoute isLoggedUser={isUserLogged}><VisitSchedulePage/></ProtectedRoute>}/>
+            <Route path="/agendamento/visita" element={<ProtectedRoute isLoggedUser={isUserLogged} setIsLoggedUserHandler={setIsUserLogged} setLoggedUserHandler={setLoggedUser}><VisitSchedulePage/></ProtectedRoute>}/>
             <Route path="*" element={<Navigate to="/" replace />}/>
+            <Route path="my/agendamentos" element={<ProtectedRoute isLoggedUser={isUserLogged} setIsLoggedUserHandler={setIsUserLogged} setLoggedUserHandler={setLoggedUser}><MyScheduledVisits/></ProtectedRoute>}/>
           </Routes>
         </div>
         <Footer/>
       </BrowserRouter>
     </div>
 
-    <LoginModal showModal={showLoginModal} onModalCloseHandler={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal} setIsUserLogged={setIsUserLogged}/>
+    <LoginModal showModal={showLoginModal} onModalCloseHandler={() => setShowLoginModal(false)} setShowRegisterModal={setShowRegisterModal} setIsUserLogged={setIsUserLogged} setLoggedUser={setLoggedUser}/>
     <RegisterModal showModal={showRegisterModal} onModalCloseHandler={() => setShowRegisterModal(false)} setShowLoginModal={setShowLoginModal}/>
     <EmpilhadeiraModal showModal={showEmpilhadeiraModal} onModalClose={() => setShowEmpilhadeiraModal(false)} dados={selectedEmpilhadeira}/>
     <ToastContainer

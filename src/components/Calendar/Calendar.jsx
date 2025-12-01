@@ -24,7 +24,6 @@ const Calendar = ({selectedDate, setSelectedDate}) => {
             content.push(i);
         }
 
-        console.log(calendarContent.length)
         for(let i = content.length; i % 7 != 0; i++){
             content.push(null);
         }

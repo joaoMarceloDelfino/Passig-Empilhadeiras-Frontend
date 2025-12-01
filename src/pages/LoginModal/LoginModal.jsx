@@ -11,7 +11,7 @@ const schema = z.object({
     email: z.string().trim().min(1, "Email é obrigatório").email("Campo deve ser um email"),
     password: z.string().trim().min(1, "Senha é obrigatória"),
 });
-function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIsUserLogged}){
+function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIsUserLogged, setLoggedUser}){
 
     const {register, 
             handleSubmit, 
@@ -32,7 +32,15 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
         const sucessFunction = () => {
             onModalClose();
             setIsUserLogged(true);
-            toast("Usuario logado com sucesso!");
+            toast.success("Usuario logado com sucesso!", {
+            position: "bottom-right",
+            autoClose: 3000,     
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored"      
+            });
             reset({}, {keepValues: false});
         }
 
@@ -45,12 +53,15 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
         BaseApi.login(data)
         .then(() => {
             sucessFunction();
+            BaseApi.getLoggedUser()
+            .then(res => setLoggedUser(res.data))
         })
         .catch(() => {
             errorFunction();
         })
         .finally(() => setIsLoading(false));
 
+        
     }
 
     function onModalClose(){
@@ -88,7 +99,7 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
                                 <button className={styles.button} type="submit">
                                     {
                                         !isLoading ? 
-                                            "Logar"
+                                            <p className={styles.buttonText}>Logar</p>
                                         : <LoadingSpinner size={36}/>
                                     }
                                 </button>

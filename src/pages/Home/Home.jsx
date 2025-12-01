@@ -1,21 +1,18 @@
 import styles from "./Home.module.css"
-import ManutencaoEmpilhadeirasCard from "../../components/ManutencaoEmpilhadeirasCard/ManutencaoEmpilhadeirasCard";
-import { FaCog } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import BaseApi from "../../api/BaseApi";
 import EmpilhaManu from "../../assets/empilhadeira_ManuArea.png";
-
 import MotivoAlugar from "../../components/MotivoAlugar/MotivoAlugar";
 import ManutencaoHome from "../../components/ManutencaoHome/ManutencaoHome";
 
 
 
-function Home({ setIsUserLoggedHandler }) {
+function Home({ setIsUserLoggedHandler, setLoggedUserHandler }) {
 
     useEffect(() => {
         BaseApi.isUserLogged().then((res) => { setIsUserLoggedHandler(res.data) }).catch(() => setIsUserLoggedHandler(false))
+        BaseApi.getLoggedUser().then(res => setLoggedUserHandler(res.data));
     }, []);
 
     return (

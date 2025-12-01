@@ -25,14 +25,12 @@
     gap: 5%;
 }
 
-/* NOVO – título da logo segue a cor do tema */
 .logoTitle{
     color: var(--text-color);
     font-size: 1.4rem;
     font-weight: 700;
 }
 
-/* Botão do modo claro/escuro */
 .themeToggle{
     margin-left: 1.5rem;
     border-radius: 999px;

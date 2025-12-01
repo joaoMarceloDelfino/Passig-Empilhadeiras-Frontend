@@ -21,7 +21,7 @@ api.interceptors.response.use(
         await api.post("/user/refresh", null, { withCredentials: true });
         return api(originalRequest);
       } catch (err) {
-        if (path.startsWith("/user/isUserLogged") || path.startsWith("/user/refresh") ) {
+        if (path.startsWith("/user/isUserLogged") || path.startsWith("/user/refresh") || path.startsWith("/user/getLoggedUser") ) {
           return Promise.reject(error);
         }
         window.location.assign("/");

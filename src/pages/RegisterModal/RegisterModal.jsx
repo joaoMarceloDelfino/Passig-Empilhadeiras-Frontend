@@ -44,7 +44,15 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
     async function onSubmit(data){    
         const sucessFunction = () => {
             onModalClose();
-            toast("Usuario registrado com sucesso!");
+            toast.success("Usuario registrado com sucesso!", {
+            position: "bottom-right",
+            autoClose: 3000,     
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored"      
+            });
             reset({}, {keepValues: false});
         }
 
@@ -133,7 +141,7 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
                                 <button className={styles.button}  type="submit">
                                     {
                                         !isLoading ? 
-                                            "Registrar"
+                                            <p className={styles.buttonText}>Registrar</p>
                                         : <LoadingSpinner size={36}/>
                                     }
                                 </button>

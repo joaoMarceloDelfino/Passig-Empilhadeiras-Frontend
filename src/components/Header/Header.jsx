@@ -23,13 +23,12 @@ function Header(){
     return(
         <header className={styles.header}>
             <div className={styles.main_header}>
-                {/* Alterar para uma logo de verdade futuramente */}
                 <h1 className={styles.logoTitle}>Passig Empilhadeiras</h1>
             </div>
 
             <div className={styles.info_header}>
                 <InfoCard 
-                    icon={<FaLocationDot size={40}/>}
+                    icon={<FaLocationDot size={40} color="#000"/>}
                     title="Localização"
                     text={[
                         "Rua Prefeito Manoel Evaldo Muller,",
@@ -39,7 +38,7 @@ function Header(){
                 />
 
                 <InfoCard 
-                    icon={<BsTelephone size={40}/>}
+                    icon={<BsTelephone size={40} color="#000"/>}
                     title="Telefone"
                     text="(47) 9999-9999"
                 />

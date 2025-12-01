@@ -101,3 +101,7 @@ input:focus{
 .errorDiv{
     border-color: red !important;
 }
+
+.buttonText{
+    color: #000;
+}
