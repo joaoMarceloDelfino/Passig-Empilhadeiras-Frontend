@@ -59,11 +59,6 @@ function Home({ setIsUserLoggedHandler, setLoggedUserHandler }) {
                         />
 
                         <MotivoAlugar
-                            titulo="Manutenção Inclusa"
-                            texto="Incluímos manutenção preventiva e corretiva, reduzindo paradas e custos adicionais."
-                        />
-
-                        <MotivoAlugar
                             titulo="Suporte Técnico Rápido"
                             texto="Equipe especializada para atendimento imediato e solução de problemas."
                         />
