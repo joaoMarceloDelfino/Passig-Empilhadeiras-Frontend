@@ -2,7 +2,7 @@ import styles from "./Home.module.css"
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import BaseApi from "../../api/BaseApi";
-import EmpilhaManu from "../../assets/empilhadeira_ManuArea.png";
+import EmpilhaManu from "../../assets/Empilhadeira_ManuArea.png";
 import MotivoAlugar from "../../components/MotivoAlugar/MotivoAlugar";
 import ManutencaoHome from "../../components/ManutencaoHome/ManutencaoHome";
 
