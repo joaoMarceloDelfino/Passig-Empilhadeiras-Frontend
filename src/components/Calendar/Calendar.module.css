@@ -36,3 +36,44 @@
 .title{
     font-size: 1.5rem;
 }
+
+@media (max-width: 1024px) {
+    .calendarContent{
+        gap: 1.5rem;
+    }
+
+    .title{
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .calendarWrapper{
+        gap: 1rem;
+    }
+
+    .calendarDiv{
+        width: 100%;
+        max-width: 22rem; 
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .calendarContent{
+        gap: 1rem;
+    }
+
+    .title{
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .dayOfWeek{
+        font-size: 0.75rem;
+    }
+
+    .button{
+        font-size: 1rem;
+        padding: 0.3rem;
+    }
+}

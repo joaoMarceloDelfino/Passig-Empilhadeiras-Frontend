@@ -24,3 +24,20 @@
 .beforeDate{
     background-color: var(--cinza-claro);
 }
+
+
+@media (max-width: 1024px) {
+    .container{
+        width: 3.2rem;
+        height: 3.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container{
+        width: 2.4rem;
+        height: 2.4rem;
+        font-size: 0.8rem;
+    }
+}
