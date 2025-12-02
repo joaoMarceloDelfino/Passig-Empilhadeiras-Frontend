@@ -4,7 +4,6 @@
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
-    
 }
 
 .titleContainer {
@@ -16,7 +15,7 @@
     padding: 10px 0;
     border-bottom: 1px solid #000;
     cursor: pointer;
-    color: #000;     
+    color: #000;
 }
 
 .content {
@@ -26,4 +25,30 @@
 
 .aberto {
     display: block;
+}
+
+@media (max-width: 1024px) {
+    .titleContainer {
+        padding: 8px 0;
+    }
+
+    .content {
+        padding: 8px 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .titleContainer {
+        padding: 8px 0;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .content {
+        padding: 8px 8px;
+        font-size: 0.9rem;
+        line-height: 1.35rem;
+    }
 }

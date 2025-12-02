@@ -61,10 +61,7 @@ function Home({ setIsUserLoggedHandler, setLoggedUserHandler }) {
                             titulo="Equipamentos Confiáveis"
                             texto="Empilhadeiras modernas, revisadas e prontas para operar, garantindo segurança e produtividade."
                         />
-                        <MotivoAlugar
-                            titulo="Manutenção Inclusa"
-                            texto="Incluímos manutenção preventiva e corretiva, reduzindo paradas e custos adicionais."
-                        />
+
                         <MotivoAlugar
                             titulo="Suporte Técnico Rápido"
                             texto="Equipe especializada para atendimento imediato e solução de problemas."
