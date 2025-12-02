@@ -40,7 +40,7 @@ function Header(){
                 <InfoCard 
                     icon={<BsTelephone size={40} color="#000"/>}
                     title="Telefone"
-                    text="(47) 9999-9999"
+                    text="(47) 99626-6413"
                 />
 
                 <button
