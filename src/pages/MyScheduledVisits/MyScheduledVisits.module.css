@@ -4,3 +4,21 @@
     gap: 10rem;
 }
 
+
+@media (max-width: 1024px) {
+    .content{
+        gap: 6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content{
+        gap: 3rem;
+        padding: 0 1rem;
+    }
+
+    .subtitle{
+        text-align: center;
+        font-size: 1.25rem;
+    }
+}

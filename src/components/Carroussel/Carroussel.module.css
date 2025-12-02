@@ -68,3 +68,34 @@
 
 .slideLeft  { animation: slideInFromRight 500ms ease both; }
 .slideRight { animation: slideInFromLeft  500ms ease both; }
+
+@media (max-width: 1024px) {
+  .container {
+    height: 18rem;
+  }
+
+  .button {
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.6rem;
+  }
+
+  .buttonPrev { left: 0.5rem; }
+  .buttonNext { right: 0.5rem; }
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: 14rem;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.3rem;
+  }
+
+  .buttonPrev { left: 0.4rem; }
+  .buttonNext { right: 0.4rem; }
+}

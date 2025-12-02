@@ -1,7 +1,7 @@
 .container{
-        border: 1px solid #000;
-        height: 22rem;
-        width: 21rem;
+    border: 1px solid #000;
+    height: 22rem;
+    width: 21rem;
 }
 
 .titleContainer{
@@ -16,4 +16,36 @@
 .descriptionContainer{
     padding-top: 2px;
     padding-left: 4px;
+}
+
+
+@media (max-width: 1024px) {
+    .container{
+        width: 19rem;
+        height: 20rem;
+    }
+
+    .descriptionContainer{
+        padding: 4px 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container{
+        width: 100%;
+        max-width: 18rem;
+        height: auto;
+    }
+
+    .titleContainer{
+        height: auto;
+        padding: 0.6rem 0.4rem;
+        text-align: center;
+    }
+
+    .descriptionContainer{
+        padding: 6px 8px;
+        font-size: 0.95rem;
+        line-height: 1.35rem;
+    }
 }

@@ -51,3 +51,48 @@
 .link{
     color: #000;
 }
+
+@media (max-width: 1024px) {
+    .container{
+        padding-right: 1rem;
+    }
+
+    .topRow{
+        padding-left: 3rem;
+    }
+
+    .bottomRow{
+        padding-left: 2rem;
+    }
+
+    .links{
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container{
+        padding: 1.25rem 1rem;
+        gap: 1.25rem;
+    }
+
+    .topRow,
+    .bottomRow{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .socialMediaIcons{
+        justify-content: center;
+    }
+
+    .links{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
