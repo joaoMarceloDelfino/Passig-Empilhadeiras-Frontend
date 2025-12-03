@@ -7,7 +7,7 @@ import Home from './pages/Home/Home';
 import Catalog from './pages/Catalog/Catalog';
 import VisitSchedulePage from './pages/VisitSchedulePage/VisitSchedulePage';
 import MyScheduledVisits from './pages/MyScheduledVisits/MyScheduledVisits';
-import ForkliftsAdminPage from './pages/ForkliftsAdminPage/ForkliftsAdminPAge';
+import ForkliftsAdminPage from './pages/ForkliftsAdminPage/ForkliftsAdminPage';
 import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute';
 import ProtectedAdminRoute from './pages/ProtectedAdminRoute/ProtectedAdminRoute';
 import LoginModal from './pages/LoginModal/LoginModal';
