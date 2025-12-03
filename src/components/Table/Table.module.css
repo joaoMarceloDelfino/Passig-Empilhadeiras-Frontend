@@ -3,9 +3,9 @@
   margin: 20px 0;
   font-size: 16px;
   text-align: center;
-  table-layout: auto;  
-  width: auto;          
-  color: black
+  table-layout: auto;
+  width: auto;
+  color: black;
 }
 
 .table th, .table td {
@@ -21,10 +21,35 @@
   background-color: #f2f2f2;
 }
 
-.table thead th{
-    background-color: var(--cor-primaria);
+.table thead th {
+  background-color: var(--cor-primaria);
 }
 
-.acoesButton{
-  margin-left: 1rem;
+
+@media (max-width: 1024px) {
+  .table {
+    font-size: 15px;
+  }
+
+  .table th, .table td {
+    padding: 0.8rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .tableWrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .table {
+    width: max-content;
+    font-size: 14px;
+  }
+
+  .table th, .table td {
+    padding: 0.6rem 1.2rem;
+    white-space: nowrap; 
+  }
 }

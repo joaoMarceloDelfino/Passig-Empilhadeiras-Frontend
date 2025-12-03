@@ -24,6 +24,38 @@
 }
 
 .notFoundSubtitle{
-    font-size: 1.2rem
+    font-size: 1.2rem;
 }
 
+@media (max-width: 1024px) {
+    .notFoundWrapper{
+        margin-top: 1.5rem;
+        transform: translate(0, 10%);
+    }
+
+    .notFoundTitle{
+        font-size: 1.8rem;
+    }
+
+    .notFoundSubtitle{
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .notFoundWrapper{
+        margin-top: 1rem;
+        transform: translate(0, 0);
+        padding: 0 1rem;
+        text-align: center;
+    }
+
+    .notFoundTitle{
+        font-size: 1.5rem;
+    }
+
+    .notFoundSubtitle{
+        font-size: 1rem;
+    }
+}
