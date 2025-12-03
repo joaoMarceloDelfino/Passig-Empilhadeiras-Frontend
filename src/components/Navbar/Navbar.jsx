@@ -45,6 +45,11 @@ function Navbar({setShowLoginModal, setShowRegisterModal, isUserLogged, setIsUse
                     :
                     null
                 }
+                {
+                    loggedUser?.role?.name === "Admin" && isUserLogged ?
+                    <Link className={styles.nav_link} to={"/admin/empilhadeiras"}>Acessar Painel de Administrador</Link>
+                    : null
+                }
             </div> 
 
             <div className={styles.buttons}>

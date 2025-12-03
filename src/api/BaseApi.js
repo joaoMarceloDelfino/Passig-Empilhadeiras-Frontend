@@ -56,6 +56,18 @@ class BaseApi {
   findScheduledVisitByType(type){
     return api.get("/scheduledVisit/findScheduledVisitByType", {params: { type }, withCredentials: true})
   }
+
+  saveForklift(formData){
+    return api.post("/forklifts/save", formData, {withCredentials: true});
+  }
+
+  findAllScheduledVisit(){
+    return api.get("/scheduledVisit/findAllScheduledVisit", {withCredentials: true});
+  }
+
+  findAllUsers(){
+    return api.get("/user/findAllUsers", {withCredentials: true});
+  }
 }
 
 export default new BaseApi();

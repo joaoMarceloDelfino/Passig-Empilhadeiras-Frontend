@@ -24,3 +24,7 @@
 .table thead th{
     background-color: var(--cor-primaria);
 }
+
+.acoesButton{
+  margin-left: 1rem;
+}

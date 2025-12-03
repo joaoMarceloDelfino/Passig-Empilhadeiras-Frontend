@@ -104,7 +104,7 @@ function RegisterModal({showModal, onModalCloseHandler, setShowLoginModal}){
                                     <label className={styles.label}>
                                         Telefone
                                         {errors.cellphoneNumber && <p className={styles.errorMessage}>{errors.cellphoneNumber.message}</p> }
-                                        </label>
+                                    </label>
                                     <Controller
                                         name="cellphoneNumber"
                                         control={control}

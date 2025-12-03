@@ -1,4 +1,4 @@
-const status = [
+export const status = [
     { code: "FO", description: "Funcionando" },
     { code: "NF", description: "Não Funcionando" },
     { code: "MA", description: "Manutenção" },
