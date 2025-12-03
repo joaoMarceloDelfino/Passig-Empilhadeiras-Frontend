@@ -1,0 +1,43 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.title{
+    font-size: 1.5rem;
+}
+
+.sidebarItem{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.itemsWrapper{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin-top: 10rem;
+    gap: 5rem;
+}
+
+.sidebarItem{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: black;
+}
+
+.sidebarItem:hover{
+    color: var(--cor-primaria);
+}
+.sidebarItem p{
+    transform: translateY(10%);
+    font-size: 1.5rem;
+}
+
+.voltarWrapper{
+    display: flex;
+    justify-content: space-between;
+}
