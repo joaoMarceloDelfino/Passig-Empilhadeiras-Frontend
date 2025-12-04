@@ -2,7 +2,7 @@ import styles from "./Carroussel.module.css";
 import UseBase64 from "../../hooks/UseBase64";
 import { useEffect, useState } from "react";
 
-function Carrousel({ imagesList }) {
+function Carrousel({ imagesList, heigth }) {
   const { getBase64ImageUrl } = UseBase64();
   const [list, setList] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,7 +47,10 @@ function Carrousel({ imagesList }) {
   const slideClass = direction === 1 ? styles.slideLeft : styles.slideRight;
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{ height: heigth ? `${heigth}rem` : "22rem" }}
+    >
       {list.length > 1 && (
         <button
           className={`${styles.button} ${styles.buttonPrev}`}

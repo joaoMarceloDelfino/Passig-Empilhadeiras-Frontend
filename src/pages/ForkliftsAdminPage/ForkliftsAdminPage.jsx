@@ -56,17 +56,26 @@ const ForkliftsAdminPage = () => {
 
     setIsLoading(true);
 
+    
     BaseApi.findAllEmpilhadeiras()
-        .then((res) => {
+    .then((res) => {
         const listaFormatada = res.data.map((item) => ({
             ...item,
             status: findStatusByCode(item.status).description,
             aquisitionDate: DateHelper.dateToBrFormat(item.aquisitionDate),
         }));
-
+        
         setEmpilhadeirasList(listaFormatada);
-        })
-        .finally(() => setIsLoading(false));
+    })
+    .finally(() => setIsLoading(false));
+    };
+
+    const onCloseForkliftModal = () => {
+        reset({}, { keepValues: false });
+        if (fileRef.current) {
+            fileRef.current.value = null;
+        }
+        setShowNewForkliftModal(false);
     };
 
     const onSubmit = (data) => {
@@ -84,6 +93,7 @@ const ForkliftsAdminPage = () => {
         }
 
         BaseApi.saveForklift(formData).then(() => {
+            onCloseForkliftModal();
             toast.success("Empilhadeira Salva Com Sucesso!", {
                 position: "bottom-right",
                 autoClose: 3000,     
@@ -93,6 +103,7 @@ const ForkliftsAdminPage = () => {
                 draggable: true,
                 theme: "colored"      
             })
+            loadEmpilhadeiras();
         })
 
     }
@@ -140,94 +151,113 @@ const ForkliftsAdminPage = () => {
                 isOpen={showAttachmentsModal}
             />
 
-            <BaseModal
-                isOpen={showNewForkliftModal}
-                onRequestClose={() => setShowNewForkliftModal(false)}
-                contentLabel="Adicionar Nova Empilhadeira"
-            >
-                <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>
-                            Nome
-                            {errors.name && <p className={styles.errorMessage}>{errors.name.message}</p> }
-                        </label>
-                        <input {...register("name")} className={styles.input}/>
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>
-                            Modelo
-                            {errors.model && <p className={styles.errorMessage}>{errors.model.message}</p> }
-                        </label>
-                        <input {...register("model")} className={styles.input}/>
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>
-                            Fabricante
-                            {errors.manufacturer && <p className={styles.errorMessage}>{errors.manufacturer.message}</p> }
-                        </label>
-                        <input {...register("manufacturer")} className={styles.input}/>
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>
-                            Capacidade em quilos
-                            {errors.weigthCapacityKg && <p className={styles.errorMessage}>{errors.weigthCapacityKg.message}</p> }
-                        </label>
-                        <input type = "number" {...register("weigthCapacityKg")} className={styles.input}/>
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>
-                            Ano de Fabricação
-                            {errors.fabricationYear && <p className={styles.errorMessage}>{errors.fabricationYear.message}</p> }
-                        </label>
-                        <input type="number" {...register("fabricationYear")} className={styles.input}/>
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>Status</label>
-                        <select {...register("status")} className={styles.input}>
-                            {
-                                status.map((item) => {
-                                    return <option value={item.code}>{item.description}</option>
-                                })
-                            }
-                        </select>
-                    </div>
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>
-                            Data de aquisição
-                            {errors.aquisitionDate && <p className={styles.errorMessage}>{errors.aquisitionDate.message}</p> }
-                        </label>
-                        <input {...register("aquisitionDate")}  className={styles.input}/>
-                    </div>
-                    <input 
-                        type="file" 
-                        multiple
-                        {...register("file")}
-                        ref={(e) => {
-                        register("file").ref(e);
-                        fileRef.current = e;
-                        }}
-                        style={{display:"none"}}
-                        accept=".jpg,.jpeg,.png,.webp"
-                    />
+            {
+                
+                showNewForkliftModal && <BaseModal
+                                            isOpen={showNewForkliftModal}
+                                            onRequestClose={onCloseForkliftModal}
+                                            contentLabel="Adicionar Nova Empilhadeira"
+                                        >   
 
-                    <div className={styles.inputWrapper}>
-                        <label className={styles.label}>
-                            Selecione as fotos da empilhadeira
-                            {errors.file && <p className={styles.errorMessage}>{errors.file.message}</p> }
-                        </label>
-                        <div className={styles.fileChooserWrapper} onClick={() => fileRef.current.click()}>
-                            <span className={styles.fileChooserRow}>
-                                <h2>Selecionar arquivos</h2>
-                                <FiPaperclip size={30}/>
-                            </span>
-                            <span className={styles.fileChooserRow}>
-                                <p>{`Extensões Suportadas: ${supportedFilesExtensions}`}</p>
-                            </span>
-                        </div>
-                    </div>
-                    <button type="submit">Adicionar Empilhadeira </button>
-                </form>
-            </BaseModal>
+                                            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                                                <div className={styles.inputWrapper}>
+                                                    <label className={styles.label}>
+                                                        Nome
+                                                        {errors.name && <p className={styles.errorMessage}>{errors.name.message}</p> }
+                                                    </label>
+                                                    <input {...register("name")} className={styles.input}/>
+                                                </div>
+                                                <div className={styles.inputWrapper}>
+                                                    <label className={styles.label}>
+                                                        Modelo
+                                                        {errors.model && <p className={styles.errorMessage}>{errors.model.message}</p> }
+                                                    </label>
+                                                    <input {...register("model")} className={styles.input}/>
+                                                </div>
+                                                <div className={styles.inputWrapper}>
+                                                    <label className={styles.label}>
+                                                        Fabricante
+                                                        {errors.manufacturer && <p className={styles.errorMessage}>{errors.manufacturer.message}</p> }
+                                                    </label>
+                                                    <input {...register("manufacturer")} className={styles.input}/>
+                                                </div>
+                                                <div className={styles.inputWrapper}>
+                                                    <label className={styles.label}>
+                                                        Capacidade em quilos
+                                                        {errors.weigthCapacityKg && <p className={styles.errorMessage}>{errors.weigthCapacityKg.message}</p> }
+                                                    </label>
+                                                    <input type = "number" {...register("weigthCapacityKg")} className={styles.input}/>
+                                                </div>
+                                                <div className={styles.inputWrapper}>
+                                                    <label className={styles.label}>
+                                                        Ano de Fabricação
+                                                        {errors.fabricationYear && <p className={styles.errorMessage}>{errors.fabricationYear.message}</p> }
+                                                    </label>
+                                                    <select {...register("fabricationYear")} className={styles.input}>
+                                                        {Array.from(
+                                                        { length: new Date().getFullYear() - 1980 + 1 },
+                                                        (_, i) => 1980 + i
+                                                        ).map((year) => (
+                                                        <option key={year} value={year}>
+                                                            {year}
+                                                        </option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                                <div className={styles.inputWrapper}>
+                                                    <label className={styles.label}>Status</label>
+                                                    <select {...register("status")} className={styles.input}>
+                                                        {
+                                                            status.map((item) => {
+                                                                return <option value={item.code}>{item.description}</option>
+                                                            })
+                                                        }
+                                                    </select>
+                                                </div>
+                                                    <div className={styles.inputWrapper}>
+                                                <label className={styles.label}>
+                                                    Data de aquisição
+                                                    {errors.aquisitionDate && (
+                                                    <p className={styles.errorMessage}>{errors.aquisitionDate.message}</p>
+                                                    )}
+                                                </label>
+                                                <input
+                                                    type="date"
+                                                    {...register("aquisitionDate")}
+                                                    className={styles.input}
+                                                />
+                                                </div>
+                                                <input 
+                                                    type="file" 
+                                                    multiple
+                                                    {...register("file")}
+                                                    ref={(e) => {
+                                                    register("file").ref(e);
+                                                    fileRef.current = e;
+                                                    }}
+                                                    style={{display:"none"}}
+                                                    accept=".jpg,.jpeg,.png,.webp"
+                                                />
+
+                                                <div className={styles.inputWrapper}>
+                                                    <label className={styles.label}>
+                                                        Selecione as fotos da empilhadeira
+                                                        {errors.file && <p className={styles.errorMessage}>{errors.file.message}</p> }
+                                                    </label>
+                                                    <div className={styles.fileChooserWrapper} onClick={() => fileRef.current.click()}>
+                                                        <span className={styles.fileChooserRow}>
+                                                            <h2>Selecionar arquivos</h2>
+                                                            <FiPaperclip size={30}/>
+                                                        </span>
+                                                        <span className={styles.fileChooserRow}>
+                                                            <p>{`Extensões Suportadas: ${supportedFilesExtensions}`}</p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <button type="submit">Adicionar Empilhadeira</button>
+                                            </form>
+                                        </BaseModal>
+            }
         </PageBase>
     )
 }

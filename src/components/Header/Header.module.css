@@ -21,16 +21,18 @@
     padding: 1rem;
     background-color: var(--cor-primaria);
     min-width: 50%;
-    /* deixar o flex controlar a largura em telas grandes */
     width: auto;
     clip-path: polygon(6rem 0, 100% 0, 100% 100%, 0 100%);
     gap: 5%;
 }
 
-.logoTitle{
-    color: var(--text-color);
-    font-size: 1.4rem;
-    font-weight: 700;
+.logoTitle {
+  color: var(--text-color);
+  font-size: 2.5rem;       
+  font-weight: 900;       
+  letter-spacing: 0.1rem;  
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif; 
 }
 
 .themeToggle{

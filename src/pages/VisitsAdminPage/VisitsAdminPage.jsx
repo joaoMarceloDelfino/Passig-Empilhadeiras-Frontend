@@ -7,11 +7,14 @@ import { findStatusByCode } from "../../enums/VisitEnum";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../components/NotFound/NotFound";
 import Table from "../../components/Table/Table";
+import CarrousselImagesModal from "../../components/CarrousselmagesModal/CarrousselImagesModal";
 
 const VisitsAdminPage = () => {
 
     const[visits, setVisits] = useState([]);
-    const[isLoading, setIsLoading] = useState(false);
+    const[isLoading, setIsLoading] = useState(true);
+    const[imagesList, setImagesList] = useState([]);
+    const[showAttachmentsModal, setShowAttachmentsModal] = useState(false);
 
     useEffect(() => {
         loadVisits();
@@ -38,6 +41,15 @@ const VisitsAdminPage = () => {
         .finally(() => setIsLoading(false));
     }
 
+    const viewHandler = (index) => {
+        setImagesList(visits[index]?.base64Images);
+        setShowAttachmentsModal(true);
+    }
+
+    const isViewEnabled = (index) => {
+        return visits[index]?.base64Images !== null && visits[index]?.base64Images.length > 0;
+    }
+
     if(isLoading) return <LoadingSpinner/>
     
     return(
@@ -54,10 +66,18 @@ const VisitsAdminPage = () => {
                                 data={visits}
                                 columns={["type", "initialScheduledTime", "endScheduledTime", "description", "userName", "userPhone", "userEmail", "forklift"]} 
                                 headers={["Tipo", "Data Inicial", "Data Final", "Descrição", "Nome do Usuário", "Telefone do Usuário", "Email do Usuário", "Empilhadeira"]}
+                                viewHandler={viewHandler}
+                                isViewEnabled={isViewEnabled}
                             />
                         </div>
                     )
             }
+
+            <CarrousselImagesModal
+                ImagesList={imagesList}
+                onRequestClose={() => setShowAttachmentsModal(false)}
+                isOpen={showAttachmentsModal}
+            />
         </PageBase>
     )
 }
