@@ -43,7 +43,7 @@ const UsersAdminPage = () => {
                             <Table 
                                 data={users}
                                 columns={["username", "cellphoneNumber", "role", "email"]} 
-                                headers={["Nome Do Usuário", "número De Telefone", "Cargo", "Email"]}
+                                headers={["Nome Do Usuário", "Número De Telefone", "Cargo", "Email"]}
                             />
                         </div>
                     )
