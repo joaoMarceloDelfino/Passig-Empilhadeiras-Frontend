@@ -1,27 +1,43 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://passig-empilhadeiras-backend.onrender.com/api",
-  withCredentials: true
+  baseURL: "http://localhost:8080/api",
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("accessToken");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 api.interceptors.response.use(
-  response => response,
-  async error => {
+  (response) => response,
+  async (error) => {
     const originalRequest = error.config;
-
     const path = originalRequest.url.replace(api.defaults.baseURL, "");
 
-    if ((error.response?.status === 403) && !originalRequest._retry) {
+    if (error.response?.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        if(path.startsWith("/user/refresh") || path.startsWith("/user/login")){
+        if (path.startsWith("/user/refresh") || path.startsWith("/user/login")) {
           return Promise.reject(error);
         }
-        await api.post("/user/refresh", null, { withCredentials: true });
+
+        const refreshToken = localStorage.getItem("refreshToken");
+        const res = await api.post("/user/refresh", { refreshToken });
+
+        localStorage.setItem("accessToken", res.data);
+
+        originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`;
         return api(originalRequest);
       } catch (err) {
-        if (path.startsWith("/user/isUserLogged") || path.startsWith("/user/refresh") || path.startsWith("/user/getLoggedUser") ) {
+        if (
+          path.startsWith("/user/isUserLogged") ||
+          path.startsWith("/user/refresh") ||
+          path.startsWith("/user/getLoggedUser")
+        ) {
           return Promise.reject(error);
         }
         window.location.assign("/");

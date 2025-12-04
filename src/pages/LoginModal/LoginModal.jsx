@@ -29,7 +29,9 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
 
     function onSubmit(data){
         
-        const sucessFunction = () => {
+        const sucessFunction = (res) => {
+            localStorage.setItem("accessToken", res.data.accessToken);
+            localStorage.setItem("refreshToken", res.data.refreshToken);
             onModalClose();
             setIsUserLogged(true);
             toast.success("Usuario logado com sucesso!", {
@@ -51,8 +53,8 @@ function LoginModal({showModal, onModalCloseHandler, setShowRegisterModal, setIs
         setIsLoading(true);
 
         BaseApi.login(data)
-        .then(() => {
-            sucessFunction();
+        .then((res) => {
+            sucessFunction(res);
             BaseApi.getLoggedUser()
             .then(res => setLoggedUser(res.data))
         })

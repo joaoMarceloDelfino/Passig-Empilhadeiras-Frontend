@@ -16,6 +16,8 @@
 
 .nav_link{
     color: black;
+    white-space: nowrap;   
+    overflow: hidden;     
 }
 
 .nav_link:hover{
@@ -41,6 +43,11 @@
     gap: 1.5rem;
     margin-right: 5rem;
     color: #000;
+}
+
+.userInformationWrapper p{
+  white-space: nowrap;   
+  overflow: hidden;      
 }
 
 .userInformationWrapper p {

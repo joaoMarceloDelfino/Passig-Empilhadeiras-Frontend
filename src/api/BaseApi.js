@@ -6,7 +6,7 @@ class BaseApi {
   }
 
   login(body) {
-    return api.post("/user/login", body, { withCredentials: true });
+    return api.post("/user/login", body);
   }
 
   register(body) {
@@ -16,19 +16,17 @@ class BaseApi {
   saveScheduledVisit(formData) {
     return api.post("/scheduledVisit/save", formData, {
       headers: { "Content-Type": "multipart/form-data" },
-      withCredentials: true,
     });
   }
 
   findDisponibleScheduledTimestamps(date) {
     return api.get("/scheduledVisit/findDisponibleScheduledTimestamps", {
       params: { date },
-      withCredentials: true,
     });
   }
 
   isUserLogged() {
-    return api.get("/user/isUserLogged", { withCredentials: true });
+    return api.get("/user/isUserLogged");
   }
 
   existsByEmail(email) {
@@ -36,37 +34,39 @@ class BaseApi {
   }
 
   logout() {
-    return api.post("/user/logout", null, { withCredentials: true });
+    return api.post("/user/logout", null);
   }
 
   saveForkliftRentVisit(body) {
-    return api.post("/scheduledVisit/saveForkliftRentVisit", body, {
-      withCredentials: true,
-    });
+    return api.post("/scheduledVisit/saveForkliftRentVisit", body);
   }
 
   refresh() {
-    return api.post("/user/refresh", null, { withCredentials: true });
+    return api.post("/user/refresh", {
+      refreshToken: localStorage.getItem("refreshToken"),
+    });
   }
 
   getLoggedUser() {
-    return api.get("/user/getLoggedUser", {withCredentials: true});
+    return api.get("/user/getLoggedUser");
   }
 
-  findScheduledVisitByType(type){
-    return api.get("/scheduledVisit/findScheduledVisitByType", {params: { type }, withCredentials: true})
+  findScheduledVisitByType(type) {
+    return api.get("/scheduledVisit/findScheduledVisitByType", {
+      params: { type },
+    });
   }
 
-  saveForklift(formData){
-    return api.post("/forklifts/save", formData, {withCredentials: true});
+  saveForklift(formData) {
+    return api.post("/forklifts/save", formData);
   }
 
-  findAllScheduledVisit(){
-    return api.get("/scheduledVisit/findAllScheduledVisit", {withCredentials: true});
+  findAllScheduledVisit() {
+    return api.get("/scheduledVisit/findAllScheduledVisit");
   }
 
-  findAllUsers(){
-    return api.get("/user/findAllUsers", {withCredentials: true});
+  findAllUsers() {
+    return api.get("/user/findAllUsers");
   }
 }
 

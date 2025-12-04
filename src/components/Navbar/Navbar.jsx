@@ -20,19 +20,19 @@ function Navbar({setShowLoginModal, setShowRegisterModal, isUserLogged, setIsUse
     }
 
     const logout = () => {
-        BaseApi.logout().then(() => {
-                setIsUserLogged(false); navigate("/");
-                toast.success("Usuário Deslogado com Sucesso!", {
-                position: "bottom-right",
-                autoClose: 3000,        
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: "colored"        
-            });
-
-        })
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        setIsUserLogged(false); 
+        navigate("/");
+        toast.success("Usuário Deslogado com Sucesso!", {
+            position: "bottom-right",
+            autoClose: 3000,        
+            hideProgressBar: false,
+            closeOnClick: true, 
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored"  
+        });
     }
     return(
         <navbar className={styles.navbar}>

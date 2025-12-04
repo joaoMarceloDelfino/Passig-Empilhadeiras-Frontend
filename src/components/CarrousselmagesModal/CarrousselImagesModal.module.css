@@ -1,9 +1,22 @@
-.imagensWrapper{
-    width: 100%;
-    height: 100%;
+.carousel {
+   width: 100%;
 }
 
-.carousel{
-    width: 100%;
-    height: 100%;
+.imagensWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
+
+.imagensWrapper img {
+  width: 100%;
+  height: 100%;
+}
+
+/* .carouselItem{
+    min-width: 500px !important;
+    min-width: 600x !important;
+} */
+

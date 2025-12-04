@@ -15,7 +15,12 @@ const VisitSchedulePage = () => {
     const fileRef = useRef();
     const [supportedFilesExtensions, setSupportedFilesExtensions] = useState(".jpg, .webp, .png, .jpeg");
     const [disponibleTimestamps, setDisponibleTimestamps] = useState([]);
-    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
+    const [selectedDate, setSelectedDate] = useState(() => {
+        const d = new Date();
+        d.setHours(d.getHours() - 3); 
+        return d.toISOString().split("T")[0];
+    });
+
     const [initialDateTime, setInitialDatetime] = useState([]);
     const [finalDateTime, setFinalDateTime] = useState([]);
     const [description, setDescription] = useState();

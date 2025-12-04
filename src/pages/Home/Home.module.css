@@ -1,3 +1,7 @@
+.container {
+    overflow-x: auto;
+}
+
 .topContent{
     display: flex;
     flex-direction: row;

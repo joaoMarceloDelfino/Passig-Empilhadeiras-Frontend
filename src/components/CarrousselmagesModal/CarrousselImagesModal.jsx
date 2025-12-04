@@ -3,6 +3,7 @@ import BaseModal from "../BaseModal/BaseModal";
 import styles from "./CarrousselImagesModal.module.css";
 import UseBase64 from "../../hooks/UseBase64";
 import "react-multi-carousel/lib/styles.css";
+import Carrousel from "../Carroussel/Carroussel";
 
 const responsive = {
   superLargeDesktop: {
@@ -24,23 +25,15 @@ const responsive = {
 };
 
 const CarrousselImagesModal = ({isOpen, onRequestClose, ImagesList}) => {
-    const { getBase64ImageUrl } = UseBase64();
-
+    
     return(
         <BaseModal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
         >
         
-            <Carousel responsive={responsive} className={styles.carousel}>
-                 {
-                    ImagesList.map((item) => (
-                        <div className={styles.imagensWrapper}>
-                            <img src={getBase64ImageUrl(item.base64Url, item.extension)} alt="Não foi possível carregar a imagem" />
-                        </div>
-                    ))
-                }
-            </Carousel>
+          <Carrousel imagesList={ImagesList} heigth={40}/>
+
         </BaseModal>
     )
 }
