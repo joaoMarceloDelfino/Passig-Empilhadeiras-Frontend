@@ -4,7 +4,8 @@
   margin: auto;
   outline: none;
   width: 50rem;
-  height: 45rem;      
+  min-height: 40rem;  
+  max-height: 55rem;      
   overflow-y: auto;      
   transform: translateY(-10%);
 }
