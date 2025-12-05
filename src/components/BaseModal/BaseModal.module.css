@@ -5,9 +5,8 @@
   outline: none;
   width: 50rem;
   min-height: 40rem;  
-  max-height: 55rem;      
+  max-height: 50rem;      
   overflow-y: auto;      
-  transform: translateY(-10%);
 }
 
 .content{
