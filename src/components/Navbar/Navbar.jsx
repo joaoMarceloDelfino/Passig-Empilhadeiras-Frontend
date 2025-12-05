@@ -1,6 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css"
-import BaseApi from "../../api/BaseApi";
 import { FaUserCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 

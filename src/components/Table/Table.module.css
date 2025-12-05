@@ -1,6 +1,6 @@
 .tableWrapper {
   width: 100%;
-  overflow-x: visible; 
+  overflow-x: auto; /* controla o scroll */
 }
 
 .table {
@@ -8,16 +8,16 @@
   margin: 20px 0;
   font-size: 16px;
   text-align: center;
-  table-layout: fixed;  
-  width: 100%;          
+  table-layout: fixed;
+  width: max-content; /* garante expansão */
 }
 
 .table th, .table td {
   border: 1px solid #000;
   padding: 1rem 2rem;
-  white-space: normal;      
+  white-space: normal;
   word-wrap: break-word;
-  overflow-wrap: break-word; 
+  overflow-wrap: break-word;
 }
 
 .table th:nth-child(1),
@@ -43,11 +43,11 @@
 
 @media (max-width: 1625px) {
   .tableWrapper {
-    overflow-x: auto;    
+    overflow-x: auto;
   }
 
   .table {
-    width: max-content;  
+    width: max-content;
   }
 
   .table th, .table td {
@@ -80,16 +80,6 @@
 
   .table th, .table td {
     padding: 0.6rem 1.2rem;
-    white-space: nowrap; 
+    white-space: nowrap;
   }
 }
-
-.acoesButton:disabled{
-  cursor: default;
-  background-color: var(--cinza-escuro) !important;
-}
-
-.acoesButton:disabled:hover{
-  opacity: 1;
-}
-

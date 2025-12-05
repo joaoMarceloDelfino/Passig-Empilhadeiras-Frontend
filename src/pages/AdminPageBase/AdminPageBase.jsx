@@ -30,7 +30,7 @@ const AdminPageBase = () => {
             backgroundColor="white"
             style={{
             height: "100%",
-                minWidth: "30rem",
+                minWidth: "25rem",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",

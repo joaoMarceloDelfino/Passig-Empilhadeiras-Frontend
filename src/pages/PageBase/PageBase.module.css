@@ -3,7 +3,10 @@
     flex-direction: column;
     padding: 2rem 5rem;
     display: flex;
-    width: 100%;
+    overflow-x: auto;
+    position: relative;
+    flex: 1;
+    overflow-y: hidden;
 }
 
 .catalogTitle{
@@ -16,7 +19,6 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 0 5rem;
 }
 
 @media (max-width: 1024px) {
