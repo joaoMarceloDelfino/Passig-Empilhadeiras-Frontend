@@ -51,9 +51,8 @@
   }
 
   .table th, .table td {
-    white-space: nowrap;
+    white-space: wrap;
     text-overflow: ellipsis;
-    overflow: hidden;
   }
 }
 
