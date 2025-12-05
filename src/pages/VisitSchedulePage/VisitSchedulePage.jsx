@@ -110,6 +110,8 @@ const VisitSchedulePage = () => {
                 draggable: true,
                 theme: "colored"      
                 });
+                setFiles([])
+                setDescription(null)
                 loadDisponibleScheduledTimestamps();
             });
     }
@@ -136,6 +138,7 @@ const VisitSchedulePage = () => {
             draggable: true,
             theme: "colored"      
             });
+            setDescription(false);  
             loadDisponibleScheduledTimestamps();
         });
     }
@@ -227,7 +230,13 @@ const VisitSchedulePage = () => {
                         </span>
                     </div>
                     <div className={styles.formDiv}>
-                        <button type="submit">Enviar</button>
+                        <button type="submit">
+                             {
+                                !isLoading ? 
+                                    <p className={styles.buttonText}>Enviar</p>
+                                : <LoadingSpinner size={36}/>
+                            }
+                        </button>
                     </div>
 
                 </>
