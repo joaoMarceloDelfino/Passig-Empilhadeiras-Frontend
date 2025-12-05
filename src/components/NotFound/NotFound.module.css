@@ -1,7 +1,5 @@
 .notFoundWrapper{
     display: flex;
-    /* height: 100%; */
-    margin-top: 2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -10,6 +8,8 @@
     gap: 1rem;
     position: relative;
     transform: translate(0, 25%);
+    padding: 10px;
+    margin-bottom: 2rem;
 }
 
 .descriptionWrapper{

@@ -2,11 +2,16 @@
   background: #fff;
   padding: 20px;
   margin: auto;
-  border-radius: 8px;
   outline: none;
-  width: 60em;
-  height: 60rem;
+  width: 50%;
+  max-height: 80vh;       
+  overflow-y: auto;      
   transform: translateY(-10%);
+}
+
+.content{
+  height: auto;
+
 }
 
 @media (max-width: 1024px) {
