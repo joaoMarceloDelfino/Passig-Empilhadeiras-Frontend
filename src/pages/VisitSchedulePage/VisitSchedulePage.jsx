@@ -99,6 +99,7 @@ const VisitSchedulePage = () => {
             formData.append("file", files[i]);  
         }
 
+        setIsLoading(true);
         BaseApi.saveScheduledVisit(formData)
         .then(() => {
                 toast.success("Agendamento de manutenção Salvo Com Sucesso!", {
@@ -112,6 +113,7 @@ const VisitSchedulePage = () => {
                 });
                 setFiles([])
                 setDescription(null)
+                setIsLoading(false);
                 loadDisponibleScheduledTimestamps();
             });
     }
@@ -127,6 +129,7 @@ const VisitSchedulePage = () => {
             description: description
         }
 
+        setIsLoading(true);
         BaseApi.saveForkliftRentVisit(body)
         .then(() => {
             toast.success("Agendamento De Aluguel Salvo Com Sucesso!", {
@@ -139,6 +142,7 @@ const VisitSchedulePage = () => {
             theme: "colored"      
             });
             setDescription(false);  
+            setIsLoading(false);
             loadDisponibleScheduledTimestamps();
         });
     }
