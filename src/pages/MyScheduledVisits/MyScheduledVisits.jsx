@@ -66,8 +66,7 @@ const MyScheduledVisits = () => {
         
         <PageBase title="Meus Agendamentos">
             {
-                rentScheduledVisits.length == 0 && mainentenceScheduleVisits.length == 0 ?
-                    <NotFound title="Sem Resultados" text="Não foi encontrada nenhuma visita agendada para esta conta"/> :
+                rentScheduledVisits.length != 0 || mainentenceScheduleVisits.length != 0 ?
                 <div className={styles.content}>
                     
                         {
@@ -101,6 +100,8 @@ const MyScheduledVisits = () => {
                         
                         }
                 </div>
+                :
+                <NotFound title="Sem Resultados" text="Não foi encontrada nenhuma visita agendada para esta conta"/> 
             }
 
             <CarrousselImagesModal

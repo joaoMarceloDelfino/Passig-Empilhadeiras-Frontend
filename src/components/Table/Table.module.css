@@ -1,6 +1,6 @@
 .tableWrapper {
   width: 100%;
-  overflow-x: auto; /* controla o scroll */
+  overflow-x: auto; 
 }
 
 .table {
@@ -9,7 +9,7 @@
   font-size: 16px;
   text-align: center;
   table-layout: fixed;
-  width: max-content; /* garante expansão */
+  width: max-content;
 }
 
 .table th, .table td {
@@ -81,4 +81,13 @@
     padding: 0.6rem 1.2rem;
     white-space: nowrap;
   }
+}
+
+.acoesButton:disabled{
+  cursor: default;
+  background-color: var(--cinza-escuro) !important;
+}
+
+.acoesButton:disabled:hover{
+  opacity: 1;
 }

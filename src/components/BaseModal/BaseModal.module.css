@@ -3,10 +3,10 @@
   padding: 20px;
   margin: auto;
   outline: none;
-  width: 50%;
-  max-height: 80vh;       
+  width: 50rem;
+  min-height: 40rem;  
+  max-height: 50rem;      
   overflow-y: auto;      
-  transform: translateY(-10%);
 }
 
 .content{
@@ -27,6 +27,7 @@
     padding: 15px;
   }
 }
+
 
 @media (max-width: 480px) {
   .modal {

@@ -99,6 +99,7 @@ const VisitSchedulePage = () => {
             formData.append("file", files[i]);  
         }
 
+        setIsLoading(true);
         BaseApi.saveScheduledVisit(formData)
         .then(() => {
                 toast.success("Agendamento de manutenção Salvo Com Sucesso!", {
@@ -110,6 +111,9 @@ const VisitSchedulePage = () => {
                 draggable: true,
                 theme: "colored"      
                 });
+                setFiles([])
+                setDescription(null)
+                setIsLoading(false);
                 loadDisponibleScheduledTimestamps();
             });
     }
@@ -125,6 +129,7 @@ const VisitSchedulePage = () => {
             description: description
         }
 
+        setIsLoading(true);
         BaseApi.saveForkliftRentVisit(body)
         .then(() => {
             toast.success("Agendamento De Aluguel Salvo Com Sucesso!", {
@@ -136,6 +141,8 @@ const VisitSchedulePage = () => {
             draggable: true,
             theme: "colored"      
             });
+            setDescription(false);  
+            setIsLoading(false);
             loadDisponibleScheduledTimestamps();
         });
     }
@@ -227,7 +234,13 @@ const VisitSchedulePage = () => {
                         </span>
                     </div>
                     <div className={styles.formDiv}>
-                        <button type="submit">Enviar</button>
+                        <button type="submit">
+                             {
+                                !isLoading ? 
+                                    <p className={styles.buttonText}>Enviar</p>
+                                : <LoadingSpinner size={36}/>
+                            }
+                        </button>
                     </div>
 
                 </>
